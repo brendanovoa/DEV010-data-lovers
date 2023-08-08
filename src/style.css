@@ -1,0 +1,23 @@
+h1{
+    text-align: center;
+}
+
+
+.container {
+    /* Establece el contenedor como flex y alinea su contenido tanto horizontal como verticalmente */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 20vh; /* Establece una altura mínima del 40% del viewport */
+    padding: 10px; /* Agrega un poco de espacio interno para que no quede pegado al borde */
+}
+
+.button{
+   /* font-family: 'Mulish', sans-serif;*/
+    font-size: 1.8rem;
+    height: 2.8rem;
+    border-width: 0.3rem;
+    border-radius: 0.70rem;
+    border-color: #2B9935;
+    background-color: /*#B39CD0*/ #57B52F;
+}
