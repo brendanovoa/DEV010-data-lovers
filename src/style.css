@@ -8,17 +8,18 @@ h1{
 }
 
 
+/*Contenedor que tiene al botón*/
 .container {
-    /* Establece el contenedor como flex y alinea su contenido tanto horizontal como verticalmente */
-    display: flex;
+    display: flex;/* Establece el contenedor como flex y alinea su contenido tanto horizontal como verticalmente */
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     min-height: 20vh; /* Establece una altura mínima del 40% del viewport */
     padding: 10px; /* Agrega un poco de espacio interno para que no quede pegado al borde */
 }
 
+/*boton para ingresar al sitio*/
 .button{
-   /* font-family: 'Mulish', sans-serif;*/
+    font-family: 'Itim', cursive;
     font-size: 1.8rem;
     height: 2.8rem;
     border-width: 0.3rem;
@@ -27,13 +28,44 @@ h1{
     background-color: /*#B39CD0*/ #57B52F;
 }
 
+/*Cambia el color del boton al hacer click*/
+.button:active{
+    background-color: #F2511C;
+}
+
+.menu{
+    /*padding: .5rem; /* Agrega un espacio interno dentro del nav-bar, para que así centre los elementos "a" solo para la altura o verticalmente, no centra horizontalmente */
+     /* Agrega un contenedor para los boxes y utiliza flexbox */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los boxes se reorganicen en varias líneas si no caben en una sola */
+    justify-content: space-between; /* Distribuye los boxes de manera equitativa en el contenedor */
+    background-color: #bebebe;  
+}
+
+.menu a {
+    font-family: 'Itim', cursive;
+    font-size: 2.3rem;
+    color: #000000; /*Color para texto del menu*/
+    text-decoration: none;/*Quita el subrayado por defecto que tienen los enlaces "a"*/
+    /*border-style: dotted;*/
+    margin: 1rem 3rem; /*Permite controlar el espacio entre los elementos que tiene a los 4 lados. 1rem (espacio de arriba y abajo) y 3rem (espacio de derecha e izquierda)*/
+    /*padding: .5rem; /* Agrega un espacio interno dentro del box de los elementos "a" para que  así la letra se siga viendo grande*/
+}
+
+.menu a:hover{
+    color: #57B52F ;
+}
+
+.menu a:active{
+    color: #F2511C;
+}
+
 .seccionPaises{
     font-family: 'Itim', cursive;
     font-size: x-large;
     font-weight: 700;
     margin: 20px;
     display: grid;
-    
 }
 
 .cardPais{
@@ -61,12 +93,14 @@ h1{
 }
 
 .banderaNombre{
+    font-family: 'Quattrocento Sans', sans-serif;/*Tipografía para nombre de país y su nomenclatura*/
     display: flex;
     align-items: center;
     font-weight: 700;
 }
 
 .medallas{
+    font-family: 'Quattrocento Sans', sans-serif;/*tipografía para texto de medallas*/
     position: relative;
     margin-left: 20px;
 }
