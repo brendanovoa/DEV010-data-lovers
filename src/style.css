@@ -53,7 +53,7 @@ h1{
 }
 
 .menu a:hover{
-    color: #57B52F ;
+    color: #F2511C ;
 }
 
 .menu a:active{
@@ -86,7 +86,7 @@ h1{
 
 .espacioBandera{
     background-color: white;
-    background-image: url(../src/imgs/bandera-olimpica.webp);
+    background-image: url('https://images.pexels.com/photos/7200402/pexels-photo-7200402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     width: 60px;
     height: 40px;
     margin-right: 20px;
