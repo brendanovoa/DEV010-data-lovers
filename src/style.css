@@ -27,24 +27,43 @@ h1{
     background-color: /*#B39CD0*/ #57B52F;
 }
 
+.seccionPaises{
+    font-family: 'Itim', cursive;
+    font-size: x-large;
+    font-weight: 700;
+    margin: 20px;
+    display: grid;
+    
+}
+
 .cardPais{
+    margin-top: 50px;
     background-color: rgb(188, 185, 185);
-    border-radius: 50px;
-    width: 300px;
-    height: 100px;
+    border-radius: 60px;
+    width: 350px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    font-weight: 400;
+}
+
+.espacioBandera{
+    background-color: white;
+    background-image: url(../src/imgs/bandera-olimpica.webp);
+    width: 60px;
+    height: 40px;
+    margin-right: 20px;
 }
 
 .banderaNombre{
     display: flex;
-}
-
-.bandera{
-    background-color: white;
+    align-items: center;
+    font-weight: 700;
 }
 
 .medallas{
