@@ -3,42 +3,39 @@
     padding: 0;
     }
 
-h1{
-    text-align: center;
-}
-
 main{
     background-image: url('./imgs/fondos/Fondos\ propuestas_Propuesta\ 2\ -\ 01.jpg');
     width: 100%;
-    height: 820px;
+    height: fit-content;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 /*Contenedor que tiene al botón*/
-.container {
-    display: flex;/* Establece el contenedor como flex y alinea su contenido tanto horizontal como verticalmente */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    min-height: 20vh; /* Establece una altura mínima del 20% del viewport */
-    padding: 10px; /* Agrega un poco de espacio interno para que no quede pegado al borde */
-}
+/* .container {
+    display: flex; // Establece el contenedor como flex y alinea su contenido tanto horizontal como verticalmente 
+    justify-content: center; // Centra horizontalmente 
+    align-items: center; // Centra verticalmente 
+    min-height: 20vh; // Establece una altura mínima del 20% del viewport 
+    padding: 10px; // Agrega un poco de espacio interno para que no quede pegado al borde 
+} */
 
 /*boton para ingresar al sitio*/
-.button{
+/* .button{
     font-family: 'Itim', cursive;
     font-size: 1.8rem;
     height: 2.8rem;
     border-width: 0.3rem;
     border-radius: 0.70rem;
     border-color: #2B9935;
-    background-color: /*#B39CD0*/ #57B52F;
-}
+    background-color: /*#B39CD0*;
+} */
 
 /*Cambia el color del boton al hacer click*/
-.button:active{
+/* .button:active{
     background-color: #F2511C;
-}
+} */
 
 .menu{
     /*padding: .5rem; /* Agrega un espacio interno dentro del nav-bar, para que así centre los elementos "a" solo para la altura o verticalmente, no centra horizontalmente */
@@ -73,24 +70,36 @@ main{
 }
 
 .seccionAtletas{
-    display: flex;
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 0 20px; /* Añadir un espaciado adicional en los lados para centrar */
+
+    /* display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; */
 }
 
 .cardAtleta{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px; /* Espacio entre las filas */
+    grid-gap: 20px; /* Espacio entre las columnas */
+    max-width: 960px;
+    margin: 20px auto;
+    justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
+
     background-color: white;
     border-radius: 60px;
-    width: 300px;
-    height: 50px;
-    display: flex;
+    /* width: 300px;
+    height: 50px; */
+    /* display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     /*justify-content: space-between; /* Distribuye los boxes de manera equitativa en el contenedor */
-    gap: 20px;
+    /* gap: 20px; */
     font-family: 'Roboto', sans-serif;
     font-size: medium;
     font-weight: 400;
@@ -132,7 +141,7 @@ main{
     background-repeat: no-repeat;
 }
 
-.banderaNombre{
+.nombre{
     font-family: 'Quattrocento Sans', sans-serif;/*Tipografía para nombre de país y su nomenclatura*/
     display: flex;
     align-items: center;
