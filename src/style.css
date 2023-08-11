@@ -20,7 +20,7 @@ main{
     display: flex;/* Establece el contenedor como flex y alinea su contenido tanto horizontal como verticalmente */
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
-    min-height: 20vh; /* Establece una altura mínima del 40% del viewport */
+    min-height: 20vh; /* Establece una altura mínima del 20% del viewport */
     padding: 10px; /* Agrega un poco de espacio interno para que no quede pegado al borde */
 }
 
@@ -89,6 +89,7 @@ main{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    /*justify-content: space-between; /* Distribuye los boxes de manera equitativa en el contenedor */
     gap: 20px;
     font-family: 'Roboto', sans-serif;
     font-size: medium;
