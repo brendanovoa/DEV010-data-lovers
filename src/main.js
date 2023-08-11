@@ -23,12 +23,12 @@ root.innerHTML= renderHtml(nombres)
 root.innerHTML= '<marquee>Soy una serpiente que anda por el bosque</marquee>'*/
 
 import data from './data/athletes/athletes.js'
-const container = document.querySelector('.cardPais');
+const container = document.querySelector('.cardAtleta');
 
 
 for (let i=0; i < data.athletes.length; i++){
   container.innerHTML += `
-<div class="cardPais">
+<div class="cardAtleta">
   <p>${data.athletes[i].name} </p>
 </div>`
 }    
