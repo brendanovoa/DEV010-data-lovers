@@ -9,7 +9,6 @@ main{
     height: fit-content;
     background-repeat: no-repeat;
     background-size: cover;
-    
 }
 
 /*Contenedor que tiene al botón*/
@@ -69,6 +68,10 @@ main{
     color: #F2511C;
 }
 
+.navSeccion{
+    grid-column: 0 / 8;
+}
+
 .seccionAtletas{
     max-width: 90%;
     margin: 20px auto;
@@ -84,7 +87,6 @@ main{
     gap: 10px; /* Espacio entre las filas */
     grid-gap: 20px; /* Espacio entre las columnas */
     
-    justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
     justify-content: space-between;
     /* display: flex;
     flex-flow: column wrap;
@@ -93,10 +95,9 @@ main{
 }
 
 .cardAtleta{
-    
     background-color: white;
     width: 180px;
-    height: 5rem;
+    height: 3rem;
     border-radius: 10px;
     margin: 10px;
     /* width: 300px;
@@ -104,7 +105,6 @@ main{
     /* display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center; */
     /*justify-content: space-between; /* Distribuye los boxes de manera equitativa en el contenedor */
     /* gap: 20px; */
@@ -113,6 +113,7 @@ main{
     font-weight: 400;
     color: #044A88;
     text-align: center;
+    align-items: center;
 }
 
 .seccionPaises{
