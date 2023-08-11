@@ -47,7 +47,7 @@ main{
 }
 
 .menu a {
-    font-family: 'Itim', cursive;
+    font-family: 'Itim', sans-serif;
     font-size: 3vh; /*2.3rem*/
     color: white; /*Color para texto del menu*/
     text-decoration: none;/*Quita el subrayado por defecto que tienen los enlaces "a"*/
@@ -70,10 +70,22 @@ main{
 }
 
 .seccionAtletas{
-    max-width: 960px;
+    max-width: 90%;
     margin: 20px auto;
     padding: 0 20px; /* Añadir un espaciado adicional en los lados para centrar */
 
+    font-family: 'Itim', sans-serif;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px; /* Espacio entre las filas */
+    grid-gap: 20px; /* Espacio entre las columnas */
+    
+    justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
+    justify-content: space-between;
     /* display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -81,16 +93,12 @@ main{
 }
 
 .cardAtleta{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px; /* Espacio entre las filas */
-    grid-gap: 20px; /* Espacio entre las columnas */
-    max-width: 960px;
-    margin: 20px auto;
-    justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
-
+    
     background-color: white;
-    border-radius: 60px;
+    width: 180px;
+    height: 5rem;
+    border-radius: 10px;
+    margin: 10px;
     /* width: 300px;
     height: 50px; */
     /* display: flex;
@@ -104,10 +112,11 @@ main{
     font-size: medium;
     font-weight: 400;
     color: #044A88;
+    text-align: center;
 }
 
 .seccionPaises{
-    font-family: 'Itim', cursive;
+    font-family: 'Itim', sans-serif;
     font-size: x-large;
     font-weight: 700;
     padding: 20px;
@@ -141,7 +150,7 @@ main{
     background-repeat: no-repeat;
 }
 
-.nombre{
+.nombrePais{
     font-family: 'Quattrocento Sans', sans-serif;/*Tipografía para nombre de país y su nomenclatura*/
     display: flex;
     align-items: center;
@@ -197,7 +206,7 @@ footer{
     width: 100%;
     height: 50px;
     color: white;
-    font-family: 'Itim', cursive;
+    font-family: 'Itim', sans-serif;
     font-size: 2vh;
     display: flex;
     justify-content: center;
