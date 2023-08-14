@@ -38,7 +38,6 @@ for (let i=0; i < atletasOrdenados.length; i++){
     </div>`
 }
 
-
 // OTRA FORMA DE HACECR LA FUNCION USANDO SET Y ! (! sirve para cambiar el valor boleano)
 // function eliminarAtletasRepetidos(athletes) {
 //   const atletasUnicos = [];
