@@ -31,13 +31,97 @@ const atletasOrdenados = ordenar(atletasSinRepetidos);
 const container = document.querySelector('.seccionAtletas');
 
 // BUCLE FOR PARA MOSTRAR LOS NOMBRES EN LAS CARDS
-for (let i=0; i < atletasOrdenados.length; i++){
+/*for (let i=0; i < atletasOrdenados.length; i++){
   container.innerHTML += `
     <div class="cardAtleta">
         <p>${atletasOrdenados[i].name}</p>
     </div>`
+}*/
+
+//Código para paginacion
+const botonAtras = document.querySelector("#atras");
+const contadorPagina = document.querySelector("#contadorPagina");
+const botonSiquiente = document.querySelector("#siguiente");
+const seccionAtletas = document.querySelector(".seccionAtletas").content/*.firstElementChild*/;
+const elementosPorPagina = 100;
+let paginaActual = 1;
+
+
+//Función para retroceder de pagina
+function retrocederPagina() {
+  paginaActual = paginaActual - 1;
+  renderizar();
 }
 
+//Funcion para avanzar de pagina
+function avanzarPagina(){
+  paginaActual = paginaActual + 1;
+
+  renderizar ();
+}
+
+function obtenerDatos (pagina = 1){
+  const corteInicio = (pagina - 1) * elementosPorPagina;
+  const corteFinal = corteInicio + elementosPorPagina;
+  const elementos = Array.from(container.querySelectorAll('.cardAtleta'));
+  return elementos.slice(corteInicio, corteFinal);
+  //console.log (elementos.slice(corteInicio, corteFinal));
+}
+
+function paginasTotales(){
+  const elementosTotales = document.querySelectorAll('.cardAtleta').length;
+  return Math.ceil(elementosTotales.length / elementosPorPagina);
+}
+
+
+//Función que habilita o desactiva los botoenes de la paginas dependiendo de si nos encontramos en la primera página o en la última.
+
+function gestionBotones(){
+  //Esto comprueba si no se puede retroceder
+  if (paginaActual === 1){
+    botonAtras.setAttribute("disabled", true);
+  }
+  else{
+    botonAtras.removeAttribute("disabled");
+  }
+  //Esto comprueba si no se puede avanzar
+  if (paginaActual === paginasTotales()){
+    botonSiquiente.setAttribute("disabled", true);
+  }
+  else{
+    botonSiquiente.removeAttribute("disabled");
+  }
+}
+
+
+//Funcion que llena el nuevo DOM a partir de las variables
+function renderizar(){
+  //container.innerHTML = "";
+  // BUCLE FOR PARA MOSTRAR LOS NOMBRES EN LAS CARDS
+  for (let i=0; i < atletasOrdenados.length; i++){
+    container.innerHTML += `
+    <div class="cardAtleta">
+        <p>${atletasOrdenados[i].name}</p>
+    </div>`
+  }
+  const cargaDatos = obtenerDatos(paginaActual);
+
+  gestionBotones();
+
+  contadorPagina.textContent = `${paginaActual}/${paginasTotales()}`;
+  console.log(Array.isArray(cargaDatos))
+  cargaDatos.forEach(function (datosSeccion){
+    const atletas = seccionAtletas.cloneNode(true);
+    const card = atletas.querySelector(".cardAtleta");
+    card.textContent = datosSeccion.textContent;
+    container.appendChild(atletas);
+  });
+}
+
+botonAtras.addEventListener("click", retrocederPagina);
+botonSiquiente.addEventListener('click', avanzarPagina);
+
+renderizar();
 
 // OTRA FORMA DE HACECR LA FUNCION USANDO SET Y ! (! sirve para cambiar el valor boleano)
 // function eliminarAtletasRepetidos(athletes) {
