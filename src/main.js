@@ -1,4 +1,58 @@
+/* eslint-disable no-console */
 // Aquí va todo lo relacionado con el DOM
+
+import data from './data/athletes/athletes.js'
+
+// FUNCION PARA ELIMINAR NOMBRES REPETIDOS
+function eliminarRepetidos(athletes) {
+  const atletasUnicos = [];
+  const nombresVistos = [];
+  athletes.forEach(athlete => {
+    if (nombresVistos.includes(athlete.name)) {
+      // No hacer nada si el nombre ya está en nombresVistos
+    } else {
+      nombresVistos.push(athlete.name);
+      atletasUnicos.push(athlete);
+    }
+  });
+  return atletasUnicos;
+}
+const atletasSinRepetidos = eliminarRepetidos(data.athletes);
+
+// FUNCION PARA ORDENAR DE LA A A LA Z 
+function ordenar (atletas) {
+  return atletas.sort((a,b) => a.name.localeCompare(b.name));
+  // agregar comparador de ordenación - función de comparación
+  /* La función de comparación debe retornar un valor negativo si el primer elemento 
+  debe estar antes que el segundo, cero si ambos elementos son equivalentes 
+  y un valor positivo si el primer elemento debe estar después que el segundo.*/
+}
+const atletasOrdenados = ordenar(atletasSinRepetidos);
+const container = document.querySelector('.seccionAtletas');
+
+// BUCLE FOR PARA MOSTRAR LOS NOMBRES EN LAS CARDS
+for (let i=0; i < atletasOrdenados.length; i++){
+  container.innerHTML += `
+    <div class="cardAtleta">
+        <p>${atletasOrdenados[i].name}</p>
+    </div>`
+}
+
+
+// OTRA FORMA DE HACECR LA FUNCION USANDO SET Y ! (! sirve para cambiar el valor boleano)
+// function eliminarAtletasRepetidos(athletes) {
+//   const atletasUnicos = [];
+//   const nombresVistos = new Set();
+//   athletes.forEach(athlete => {
+//     if (!nombresVistos.has(athlete.name)) {
+//       nombresVistos.add(athlete.name);
+//       atletasUnicos.push(athlete);
+//     }
+//   });
+//   return atletasUnicos;
+// }
+// const atletasSinRepetidos = eliminarAtletasRepetidos(data.athletes);
+// const container = document.querySelector('.seccionAtletas');
 
 // EJEMPLO CARLOS
 /*const root = document.getElementById('root')
@@ -19,51 +73,6 @@ const nombres=[
 ]
 root.innerHTML= renderHtml(nombres)
 root.innerHTML= '<marquee>Soy una serpiente que anda por el bosque</marquee>'*/
-
-import data from './data/athletes/athletes.js'
-
-// FUNCION PARA LIMINAR NOMBRES REPETIDOS
-function eliminarAtletasRepetidos(athletes) {
-  const atletasUnicos = [];
-  const nombresVistos = new Set();
-  athletes.forEach(athlete => {
-    if (!nombresVistos.has(athlete.name)) {
-      nombresVistos.add(athlete.name);
-      atletasUnicos.push(athlete);
-    }
-  });
-  return atletasUnicos;
-}
-const atletasSinRepetidos = eliminarAtletasRepetidos(data.athletes);
-const container = document.querySelector('.seccionAtletas');
-
-// BUCLE FOR PARA MOSTRAR LOS NOMBRES EN LAS CARDS
-for (let i=0; i < atletasSinRepetidos.length; i++){
-  container.innerHTML += `
-    <div class="cardAtleta">
-        <p>${atletasSinRepetidos[i].name}</p>
-    </div>`
-}
-
-// OTRA FORMA DE HACECR LA FUNCION SIN USAR SET NI ! PERO NO ME FUNCCIONÓ
-// function eliminarRepetidos(athletes) {
-//   const atletasUnicos = [];
-//   const nombresVistos = [];
-//   athletes.forEach(athlete => {
-//     if (nombresVistos.includes(athlete.name)) {
-//       // No hacer nada si el nombre ya está en nombresVistos
-//     } else {
-//       nombresVistos.push(athletes.name);
-//       atletasUnicos.push(athlete);
-//     }
-//   });
-//   return atletasUnicos;
-// }
-// const atletasSinRepetidos = eliminarRepetidos(data.athletes);
-// console.log(atletasSinRepetidos);
-
-
-
 
 /* CÓDIGO DE CARO PULIDO PARA PAGINACIÓN*/
 // const items = 20;
