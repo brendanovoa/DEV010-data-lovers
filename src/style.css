@@ -81,7 +81,7 @@ main{
 }
 
 .btn{
-    width: 90px;
+    width: 70px;
     height: 30px;
     border-radius: 15px;
     background-color: white;
@@ -93,6 +93,24 @@ main{
 }
 
 .btn:hover{
+    background-color: #044A88;
+    color: white;
+    border-color: white;
+}
+
+.btnFlecha{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    font-weight: 400;
+    color: #044A88;
+    text-align: center;
+}
+
+.btnFlecha:hover{
     background-color: #044A88;
     color: white;
     border-color: white;

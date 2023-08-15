@@ -115,6 +115,17 @@ renderizar();
 botonAtras.addEventListener("click", retrocederPagina);
 botonSiquiente.addEventListener('click', avanzarPagina);
 
+// NO ESTAN FUNCIONANDO LOS BOTONES
+const btnPagPrimera = document.getElementById("btnPagPrimera");
+btnPagPrimera.addEventListener('click', function() {
+  renderizar(1); // Llamar a renderizar con la página 1
+});
+
+const btnPagUltima = document.getElementById("btnPagUltima");
+btnPagUltima.addEventListener('click', function() {
+  renderizar(paginasTotales); // Llamar a renderizar con la última página
+});
+
 // Clonar la plantilla de la tarjeta de atleta
 // const plantillaAtleta = document.querySelector(".cardAtleta");
 // const atletas = plantillaAtleta.cloneNode(true);
