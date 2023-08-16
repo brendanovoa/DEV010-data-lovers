@@ -137,8 +137,8 @@ main{
 
 .seccionAtletas{
     max-width: 90%;
-    margin: 20px auto;
-    padding: 0 20px; /* Añadir un espaciado adicional en los lados para centrar */
+    margin: 20px auto 0; 
+    padding: 0 20px 20px; /* top | left and right | bottom *//* Añadir un espaciado adicional en los lados para centrar */
 
     font-family: 'Itim', sans-serif;
     font-size: x-large;
@@ -147,8 +147,7 @@ main{
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 10px; /* Espacio entre las filas */
-    grid-gap: 20px; /* Espacio entre las columnas */
+    grid-gap: 20px; /* Espacio entre las columnas y filas */
     
     justify-content: space-between;
     justify-items: center;
@@ -168,8 +167,11 @@ main{
     font-size: medium;
     font-weight: 400;
     color: #044A88;
+    display: flex;
     text-align: center;
     align-items: center;
+    justify-content: center;
+    padding: 5px;
 }
 
 .seccionPaises{
@@ -213,6 +215,7 @@ main{
     align-items: center;
     font-weight: 700;
 }
+
 
 .medallas{
     font-family: 'Quattrocento Sans', sans-serif;/*tipografía para texto de medallas*/
