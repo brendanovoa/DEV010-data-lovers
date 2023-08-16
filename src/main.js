@@ -118,12 +118,22 @@ botonSiquiente.addEventListener('click', avanzarPagina);
 // NO ESTAN FUNCIONANDO LOS BOTONES
 const btnPagPrimera = document.getElementById("btnPagPrimera");
 btnPagPrimera.addEventListener('click', function() {
-  renderizar(1); // Llamar a renderizar con la página 1
+  if (paginaActual !== 1){
+    return renderizar(1);// Llamar a renderizar con la página 1
+  } 
+  else{
+    btnPagPrimera.setAttribute("disabled", "true");
+  }
 });
 
 const btnPagUltima = document.getElementById("btnPagUltima");
 btnPagUltima.addEventListener('click', function() {
-  renderizar(paginasTotales); // Llamar a renderizar con la última página
+  if (paginaActual !== paginasTotales){
+    return renderizar(paginasTotales);// Llamar a renderizar con la última página
+  } 
+  else{
+    btnPagUltima.setAttribute("disabled","true");
+  }
 });
 
 // Clonar la plantilla de la tarjeta de atleta
