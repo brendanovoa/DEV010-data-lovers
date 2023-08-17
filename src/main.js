@@ -116,7 +116,7 @@ renderizar();
 botonAtras.addEventListener("click", retrocederPagina);
 botonSiquiente.addEventListener('click', avanzarPagina);
 
-// NO ESTAN FUNCIONANDO LOS BOTONES
+// BOTONES PRIMERA Y ULTIMA PÁGINA - NO ESTAN FUNCIONANDO LOS BOTONES
 const btnPagPrimera = document.getElementById("btnPagPrimera");
 btnPagPrimera.addEventListener('click', function() {
   if (paginaActual !== 1){
@@ -137,14 +137,78 @@ btnPagUltima.addEventListener('click', function() {
   }
 });
 
+// FUNCION FILTRO POR PAIS
+function filtroPais(input, data) {
+  return data.filter(item => item.team === input);
+}
+
+const menuPaises = document.getElementById('menuPaises');
+const container = document.querySelector('.seccionAtletas');
+const paginacion = document.querySelector('.btnPaginacion');
+
+// Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
+const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
+const paisesUnicos = Array.from(paisesUnicosSet);
+
+paisesUnicos.sort(); // Ordenar alfabéticamente
+
+paisesUnicos.forEach(team => {
+  const option = document.createElement('option');
+  option.value = team;
+  option.textContent = team;
+  menuPaises.appendChild(option);
+});
+
+// Despliega nombres por pais
+menuPaises.addEventListener('change', function() {
+  const paisSeleccionado = menuPaises.value;
+  if (paisSeleccionado) {
+    const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
+
+    // Obtener nombres únicos y ordenar alfabéticamente
+    const nombresUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
+    
+    container.innerHTML = '';
+    paginacion.innerHTML = '';
+
+    nombresUnicosOrdenados.forEach(nombre => {
+      const nombreInfo = document.createElement("div");
+      nombreInfo.classList.add("cardAtleta");
+
+      nombreInfo.textContent = nombre;
+      container.appendChild(nombreInfo);
+    });
+  } else {
+    container.innerHTML = '';
+    alert("Seleccione un país para filtrar");
+  }
+});
 
 
 
 
+// Usar la función eliminarRepetidos para obtener atletas únicos
+// const atletasUnicos = eliminarRepetidos(paisesFiltrados);
+    
+// Ordenar alfabéticamente los atletas utilizando la función ordenar
+// const atletasOrdenados = ordenar(atletasUnicos);
 
+/*
+paisesFiltrados.forEach(athlete => {
+  //const athleteInfo = document.createElement('p');
+  const athleteInfo = document.createElement("div");
+  athleteInfo.classList.add("cardAtleta");
 
+  athleteInfo.textContent = `${athlete.name}, País: ${athlete.team}`;
+  containerPaisesFiltrados.appendChild(athleteInfo);
+});
+} else {
+  // containerPaisesFiltrados.innerHTML = 'Seleccione un pais para filtrar.';
+containerPaisesFiltrados.innerHTML = '';//'Seleccione un equipo para filtrar.';
+alert("Seleccione un país para filtrar");
 
-
+}
+});
 
 /*
 // OBTENER DATOS DE PAISES
@@ -204,57 +268,6 @@ menuPaises.addEventListener('change', function() {
   }
 });
 */
-
-
-
-
-// FUNCION FILTRO POR PAIS
-function filtroPais(input, data) {
-  return data.filter(item => item.team === input);
-}
-
-const menuPaises = document.getElementById('menuPaises');
-const containerPaisesFiltrados = document.getElementById('paisesFiltrados');
-
-// Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
-
-const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
-const paisesUnicos = Array.from(paisesUnicosSet);
-
-/*const paisesUnicos = athletes.athletes.reduce((paises, athlete) => {
-  if (!paises.includes(athlete.team)) {
-    paises.push(athlete.team);
-  }
-  return paises;
-}, []);*/
-
-console.log(paisesUnicos);
-
-paisesUnicos.forEach(team => {
-  const option = document.createElement('option');
-  option.value = team;
-  option.textContent = team;
-  menuPaises.appendChild(option);
-});
-
-menuPaises.addEventListener('change', function() {
-  const paisSeleccionado = menuPaises.value;
-  if (paisSeleccionado) {
-    const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
-    containerPaisesFiltrados.innerHTML = '';
-
-    paisesFiltrados.forEach(athlete => {
-      const athleteInfo = document.createElement('p');
-      athleteInfo.textContent = `Nombre del equipo: ${athlete.name}, Equipo: ${athlete.team}`;
-      containerPaisesFiltrados.appendChild(athleteInfo);
-    });
-  } else {
-    containerPaisesFiltrados.innerHTML = 'Seleccione un equipo para filtrar.';
-  }
-});
-
-
-
 
 
 /*
