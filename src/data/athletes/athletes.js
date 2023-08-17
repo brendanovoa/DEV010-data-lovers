@@ -629,7 +629,7 @@ export default {
       "medal": "Silver"
     },
     {
-      "name": "milie Andol",
+      "name": "Emilie Andol",
       "gender": "F",
       "height": "170",
       "weight": "97",
@@ -1313,7 +1313,7 @@ export default {
       "medal": "Bronze"
     },
     {
-      "name": "gatha Bednarczuk Rippel",
+      "name": "Agatha Bednarczuk Rippel",
       "gender": "F",
       "height": "182",
       "weight": "70",
@@ -3797,7 +3797,7 @@ export default {
       "medal": "Gold"
     },
     {
-      "name": "lodie Pascaline Clouvel",
+      "name": "Lodie Pascaline Clouvel",
       "gender": "F",
       "height": "182",
       "weight": "69",
@@ -5573,7 +5573,7 @@ export default {
       "medal": "Silver"
     },
     {
-      "name": "der Francis Carbonera",
+      "name": "Der Francis Carbonera",
       "gender": "M",
       "height": "205",
       "weight": "107",
@@ -5909,7 +5909,7 @@ export default {
       "medal": "Bronze"
     },
     {
-      "name": "ime Fantela",
+      "name": "Ime Fantela",
       "gender": "M",
       "height": "183",
       "weight": "67",
@@ -6137,7 +6137,7 @@ export default {
       "medal": "Bronze"
     },
     {
-      "name": "scar Albeyro Figueroa Mosquera",
+      "name": "Oscar Albeyro Figueroa Mosquera",
       "gender": "M",
       "height": "159",
       "weight": "62",
@@ -6209,7 +6209,7 @@ export default {
       "medal": "Gold"
     },
     {
-      "name": "sa Nilla Maria Fischer",
+      "name": "Sa Nilla Maria Fischer",
       "gender": "F",
       "height": "176",
       "weight": "68",
@@ -7157,7 +7157,7 @@ export default {
       "medal": "Gold"
     },
     {
-      "name": "ivko Goci",
+      "name": "Ivko Goci",
       "gender": "M",
       "height": "193",
       "weight": "93",
@@ -20045,7 +20045,7 @@ export default {
       "medal": "Gold"
     },
     {
-      "name": "rif rifov",
+      "name": "Rif Rifov",
       "gender": "M",
       "height": "180",
       "weight": "97",
@@ -20057,7 +20057,7 @@ export default {
       "medal": "Bronze"
     },
     {
-      "name": "Sabah riti",
+      "name": "Sabah Riti",
       "gender": "M",
       "height": "192",
       "weight": "130",
@@ -20141,7 +20141,7 @@ export default {
       "medal": "Bronze"
     },
     {
-      "name": "Davor tefanek",
+      "name": "Davor Tefanek",
       "gender": "M",
       "height": "170",
       "weight": "66",
@@ -20669,7 +20669,7 @@ export default {
       "medal": "Gold"
     },
     {
-      "name": "ron Szilgyi",
+      "name": "Ron Szilgyi",
       "gender": "M",
       "height": "180",
       "weight": "78",
