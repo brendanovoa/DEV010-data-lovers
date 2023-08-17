@@ -116,7 +116,23 @@ main{
     border-color: white;
 }
 
-#tipoFiltro{  
+#menuPaises{  
+    height: 30px;
+    border-radius: 0.4rem;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    font-weight: 400;
+    color: #044A88;
+}
+
+#menuPaises:hover{
+    background-color: #044A88;
+    color: white;
+    border-color: white;
+}
+
+/* #tipoFiltro{  
     height: 30px;
     border-radius: 0.4rem;
     background-color: white;
@@ -130,7 +146,8 @@ main{
     background-color: #044A88;
     color: white;
     border-color: white;
-}
+} */
+
 .inputBuscar{
     width: 300px;
 }

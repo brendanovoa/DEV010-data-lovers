@@ -45,29 +45,26 @@
     </section>
 
     <!--Cards de atletas-->
-    <div class="navSeccion">
+    <section class="navSeccion">
+      <!--Título-->
       <h2>Atletas participantes</h2>
-      <!--<button id="btnAtras" class="btn">ATRAS</button>
-      <p>Página </p>
-      <p id="conteoPag"></p>-->
-      <!--<button id="btnAdelante" class="btn">ADELANTE</button>-->
-       <!--Paginacion-->
-       <button id="btnPagPrimera" class="btn">P.1</button>
-       <button id="atras" class="btnFlecha"> << </button> <!--Boton para retroceder pagina-->
-       <span id="contadorPagina"></span> <!--Informacion de la pagina actual-->
-       <button id="siguiente" class="btnFlecha"> >> </button> <!--Boton para avanzar de pagina-->
-       <button id="btnPagUltima" class="btn">P.19</button>
-        <!--Menu deplegable-->
-        <div class="menuDesplegable">
-         <select name="" id="tipoFiltro">
-           <option value="">Selecciona un filtro</option>
-           <option value="pais">País</option>
-           <option value="disciplina">Disciplina</option>
-         </select>
-        </div>
-        
-      <input id="buscador" class="inputBuscar" type="text" placeholder="Buscar">
-    </div>
+      <!--Paginacion-->
+      <button id="btnPagPrimera" class="btn">P.1</button>
+      <button id="atras" class="btnFlecha"> << </button> <!--Boton para retroceder pagina-->
+      <span id="contadorPagina"></span> <!--Informacion de la pagina actual-->
+      <button id="siguiente" class="btnFlecha"> >> </button> <!--Boton para avanzar de pagina-->
+      <button id="btnPagUltima" class="btn">P.19</button>
+      <!--Menu deplegable-->
+      <div class="menuDesplegable">
+        <select id="menuPaises">
+          <option value="">Selecciona un pais</option>
+        </select>
+        <div id="paisesFiltrados"></div>
+      </div>
+      <!--Buscador-->
+      <!-- <input id="buscador" class="inputBuscar" type="text" placeholder="Buscar"> -->
+    </section>
+    
     <section class="seccionAtletas">
       <!-- <div class="cardAtleta"></div> -->
       <div class="cardAtleta">
