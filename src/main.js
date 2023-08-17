@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 // Aquí va todo lo relacionado con el DOM
 
+import athletes from './data/athletes/athletes.js';
 import data from './data/athletes/athletes.js'
 
 // FUNCION PARA ELIMINAR NOMBRES REPETIDOS
@@ -135,6 +136,147 @@ btnPagUltima.addEventListener('click', function() {
     btnPagUltima.setAttribute("disabled","true");
   }
 });
+
+
+
+
+
+
+
+
+
+
+/*
+// OBTENER DATOS DE PAISES
+function eliminarPaisesRepetidos(athletes) {
+  const paises = (athletes.team);
+  const paisesUnicos = [];
+  const paisesVistos = [];
+  paises.forEach(athlete => {
+    if (paisesVistos.includes(athlete.team)) {
+      // No hacer nada si el nombre ya está en paisesVistos
+    } else {
+      paisesVistos.push(athlete.team);
+      paisesUnicos.push(athletes);
+    }
+  });
+  console.log(paisesUnicos);
+  return paisesUnicos;
+}
+eliminarPaisesRepetidos();
+
+const paisesSinRepetidos = eliminarPaisesRepetidos(athletes.athletes.team);
+
+// FUNCION PARA ORDENAR DE LA A A LA Z 
+function ordenarPaises (athletes) {
+  return athletes.team.sort ((a,b) => a.team.localeCompare(b.team));
+}
+const paisesOrdenados = ordenarPaises (paisesSinRepetidos);
+
+// MOSTRAR PAISES EN DESPLEGABLLE
+const menuPaises = document.getElementById('menuPaises');
+const containerPaisesFiltrados = document.getElementById('paisesFiltrados');
+
+paisesOrdenados.forEach(team => {
+  const option = document.createElement('option');
+  option.value = team;
+  option.textContent = team;
+  menuPaises.appendChild(option);
+});
+
+function filtroPais(inputPais, data) {
+  return data.filter(item => item.team === inputPais);
+}
+
+menuPaises.addEventListener('change', function() {
+  const paisSeleccionado = menuPaises.value;
+  if (paisSeleccionado) {
+    const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
+    containerPaisesFiltrados.innerHTML = '';
+
+    paisesFiltrados.forEach(athlete => {
+      const athleteInfo = document.createElement('p');
+      athleteInfo.textContent = `Nombre del equipo: ${athlete.name}, Equipo: ${athlete.team}`;
+      containerPaisesFiltrados.appendChild(athleteInfo);
+    });
+  } else {
+    containerPaisesFiltrados.innerHTML = 'Seleccione un equipo para filtrar.';
+  }
+});
+*/
+
+
+
+
+// FUNCION FILTRO POR PAIS
+function filtroPais(input, data) {
+  return data.filter(item => item.team === input);
+}
+
+const menuPaises = document.getElementById('menuPaises');
+const containerPaisesFiltrados = document.getElementById('paisesFiltrados');
+
+// Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
+
+const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
+const paisesUnicos = Array.from(paisesUnicosSet);
+
+/*const paisesUnicos = athletes.athletes.reduce((paises, athlete) => {
+  if (!paises.includes(athlete.team)) {
+    paises.push(athlete.team);
+  }
+  return paises;
+}, []);*/
+
+console.log(paisesUnicos);
+
+paisesUnicos.forEach(team => {
+  const option = document.createElement('option');
+  option.value = team;
+  option.textContent = team;
+  menuPaises.appendChild(option);
+});
+
+menuPaises.addEventListener('change', function() {
+  const paisSeleccionado = menuPaises.value;
+  if (paisSeleccionado) {
+    const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
+    containerPaisesFiltrados.innerHTML = '';
+
+    paisesFiltrados.forEach(athlete => {
+      const athleteInfo = document.createElement('p');
+      athleteInfo.textContent = `Nombre del equipo: ${athlete.name}, Equipo: ${athlete.team}`;
+      containerPaisesFiltrados.appendChild(athleteInfo);
+    });
+  } else {
+    containerPaisesFiltrados.innerHTML = 'Seleccione un equipo para filtrar.';
+  }
+});
+
+
+
+
+
+/*
+// PRUEBAS FILTRO POR PAIS
+
+// Ejemplo MIMI
+function filtroPais(data, filter) {
+  return data.athletes.filter(item => item.team.includes(filter));
+}
+const search = document.querySelector('.search')
+
+// Ejemplo JAZZ
+const atletaData = {
+  filtroPais: function (pais) {
+    if (pais === "") {
+      return atleta.pais;
+    } else {
+      return atleta.pais.filter(atleta => atleta.pais.includes(pais))
+    }
+  }
+}
+*/
 
 // Clonar la plantilla de la tarjeta de atleta
 // const plantillaAtleta = document.querySelector(".cardAtleta");
