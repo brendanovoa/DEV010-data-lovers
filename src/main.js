@@ -2,34 +2,13 @@
 // Aquí va todo lo relacionado con el DOM
 
 import athletes from './data/athletes/athletes.js';
-import data from './data/athletes/athletes.js'
 
-// FUNCION PARA ELIMINAR NOMBRES REPETIDOS
-function eliminarRepetidos(athletes) {
-  const atletasUnicos = [];
-  const nombresVistos = [];
-  athletes.forEach(athlete => {
-    if (nombresVistos.includes(athlete.name)) {
-      // No hacer nada si el nombre ya está en nombresVistos
-    } else {
-      nombresVistos.push(athlete.name);
-      atletasUnicos.push(athlete);
-    }
-  });
-  return atletasUnicos;
-}
-const atletasSinRepetidos = eliminarRepetidos(data.athletes);
+import{ eliminarRepetidos, ordenar, filtroPais} from './data.js'; 
+const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
+console.log(atletasSinRepetidos);
 
-// FUNCION PARA ORDENAR DE LA A A LA Z 
-function ordenar (atletas) {
-  return atletas.sort((a,b) => a.name.localeCompare(b.name));
-  // agregar comparador de ordenación - función de comparación
-  /* La función de comparación debe retornar un valor negativo si el primer elemento 
-  debe estar antes que el segundo, cero si ambos elementos son equivalentes 
-  y un valor positivo si el primer elemento debe estar después que el segundo.*/
-}
 const atletasOrdenados = ordenar(atletasSinRepetidos);
-//const container = document.querySelector('.seccionAtletas');
+console.log(atletasOrdenados);
 
 
 // FUNCION PARA PAGINACIÓN
@@ -136,11 +115,6 @@ btnPagUltima.addEventListener('click', function() {
     btnPagUltima.setAttribute("disabled","true");
   }
 });
-
-// FUNCION FILTRO POR PAIS
-function filtroPais(input, data) {
-  return data.filter(item => item.team === input);
-}
 
 const menuPaises = document.getElementById('menuPaises');
 const container = document.querySelector('.seccionAtletas');
