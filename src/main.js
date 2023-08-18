@@ -3,7 +3,7 @@
 
 import athletes from './data/athletes/athletes.js';
 
-import{ eliminarRepetidos, ordenar, /*filtroPais*/ } from './data.js'; 
+import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar  /*filtroPais*/ } from './data.js'; 
 
 const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
 console.log(atletasSinRepetidos);
@@ -116,6 +116,49 @@ btnPagUltima.addEventListener('click', function() {
     btnPagUltima.setAttribute("disabled","true");
   }
 });
+
+
+// Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
+const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
+const paisesUnicos = Array.from(paisesUnicosSet);
+paisesUnicos.sort(); // Ordenar alfabéticamente
+//const paisesUnicosOrdenados = obtenerPaisesUnicosFiltrados;
+const menuPaises = document.getElementById('menuPaises');
+paisesUnicos.forEach(team => {
+  const option = document.createElement('option');
+  option.value = team;
+  option.textContent = team;
+  menuPaises.appendChild(option);
+});
+
+function renderizarPaises (nombresUnicos, container){
+  const paginacion = document.querySelector('.btnPaginacion');
+
+  container.innerHTML = '';
+  paginacion.innerHTML = '';//Elimina los botones de paginación una vez filtrados los atletas por país
+
+  nombresUnicos.forEach(nombre => {
+    const nombreInfo = document.createElement("div");
+    nombreInfo.classList.add("cardAtleta");
+
+    nombreInfo.textContent = nombre;
+    container.appendChild(nombreInfo);
+  });
+}
+// Despliega nombres por pais
+//const menuPaises = document.getElementById('menuPaises');
+menuPaises.addEventListener('change', function() {
+  const container = document.querySelector('.seccionAtletas');
+  const paisSeleccionado = menuPaises.value;
+  if (paisSeleccionado) {
+    const nombresUnicosFiltrados = obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes.athletes);
+    renderizarPaises(nombresUnicosFiltrados, container);  
+  } else {
+    container.innerHTML = '';
+    alert("Seleccione un país para filtrar");
+  }
+});
+
 
 /*const menuPaises = document.getElementById('menuPaises');
 const container = document.querySelector('.seccionAtletas');

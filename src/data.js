@@ -1,4 +1,4 @@
-import athletes from "./data/athletes/athletes.js";
+//import athletes from "./data/athletes/athletes.js";
 // FUNCION PARA ELIMINAR NOMBRES REPETIDOS
 export function eliminarRepetidos(athletes) { 
   const atletasUnicos = [];
@@ -27,8 +27,15 @@ export function filtroPais(input, athletes) {
   return athletes.filter(item => item.team === input);
 }
 
-const menuPaises = document.getElementById('menuPaises');
-const container = document.querySelector('.seccionAtletas');
+//Función para eliminar países repetidos y ordenarlos
+export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
+  const paisesFiltrados = filtroPais(paisSeleccionado, athletes);
+  const paisesUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
+  return paisesUnicosOrdenados;
+}
+
+
+/*const container = document.querySelector('.seccionAtletas');
 const paginacion = document.querySelector('.btnPaginacion');
 
 // Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
@@ -50,8 +57,6 @@ menuPaises.addEventListener('change', function() {
   if (paisSeleccionado) {
     const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
 
-    // Obtener nombres únicos y ordenar alfabéticamente
-    const nombresUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
     
     container.innerHTML = '';
     paginacion.innerHTML = '';
