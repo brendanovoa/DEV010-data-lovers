@@ -3,12 +3,13 @@
 
 import athletes from './data/athletes/athletes.js';
 
-import{ eliminarRepetidos, ordenar, filtroPais} from './data.js'; 
+import{ eliminarRepetidos, ordenar, /*filtroPais*/ } from './data.js'; 
+
 const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
 console.log(atletasSinRepetidos);
 
 const atletasOrdenados = ordenar(atletasSinRepetidos);
-console.log(atletasOrdenados);
+//const container = document.querySelector('.seccionAtletas');
 
 
 // FUNCION PARA PAGINACIÓN
@@ -116,7 +117,7 @@ btnPagUltima.addEventListener('click', function() {
   }
 });
 
-const menuPaises = document.getElementById('menuPaises');
+/*const menuPaises = document.getElementById('menuPaises');
 const container = document.querySelector('.seccionAtletas');
 const paginacion = document.querySelector('.btnPaginacion');
 
@@ -156,7 +157,7 @@ menuPaises.addEventListener('change', function() {
     container.innerHTML = '';
     alert("Seleccione un país para filtrar");
   }
-});
+});*/
 
 
 
