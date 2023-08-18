@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// Aquí va todo lo relacionado con el DOM
+// Aquí va todo lo relacionado con el DOM //
 
 import athletes from './data/athletes/athletes.js';
 import data from './data/athletes/athletes.js'
