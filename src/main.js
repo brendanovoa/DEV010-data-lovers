@@ -3,28 +3,23 @@
 
 import athletes from './data/athletes/athletes.js';
 
-import{ eliminarRepetidos, ordenar, /*filtroPais*/ } from './data.js'; 
+import { eliminarRepetidos, ordenar, filtroPais, /*eliminarDuplicadosYOrdenar*/ } from './data.js'; 
 
 const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
-console.log(atletasSinRepetidos);
-
 const atletasOrdenados = ordenar(atletasSinRepetidos);
-//const container = document.querySelector('.seccionAtletas');
 
-
-// FUNCION PARA PAGINACIÓN
+// ELEMENTOS PARA PAGINACIÓN
 const botonAtras = document.getElementById("atras");
 const contadorPagina = document.querySelector("#contadorPagina");
 const botonSiquiente = document.getElementById("siguiente");
 
+// Variables para calcular items por pagina
 const itemsTotales = atletasOrdenados.length;
 const itemsPagina = 100;
 const paginasTotales = Math.ceil(itemsTotales / itemsPagina); // Usamos Math.ceil para redondear hacia arriba
 let paginaActual = 1;
-//let numPag = 2
-//itemsSkip = (numPag -1) * itemsPagina;
-//const items = atletasOrdenados.slice(itemsSkip, itemsPagina + itemsSkip)
 
+// Funcion para obtener items por pagina
 function obtenerDatos (pagina = 1){
   paginaActual = pagina; // Actualizamos la página actual
   const corteInicio = (pagina - 1) * itemsPagina;
@@ -35,7 +30,7 @@ function obtenerDatos (pagina = 1){
   //return elementos.slice(corteInicio, corteFinal);
 }
 
-//Funcion que llena el nuevo DOM a partir de las variables
+// Funcion que llena el nuevo DOM a partir de las variables
 function renderizar(){
   const cargaDatos = obtenerDatos(paginaActual);
   contadorPagina.textContent = `${paginaActual} / ${paginasTotales}`;
@@ -52,7 +47,6 @@ function renderizar(){
 
     // Actualizar el contenido del elemento de la card
     const card = document.createElement("p");
-    // const card = atletas.querySelector("p");
     card.textContent = datosSeccion.name;
     atletas.appendChild(card);
     container.appendChild(atletas);
@@ -60,19 +54,19 @@ function renderizar(){
   gestionBotones(); // Llamar a gestionBotones para actualizar los botones
 }
 
-//Función para retroceder de pagina
+// Función para retroceder de pagina
 function retrocederPagina() {
   paginaActual = paginaActual - 1;
   renderizar();
 }
 
-//Funcion para avanzar de pagina
+// Funcion para avanzar de pagina
 function avanzarPagina(){
   paginaActual = paginaActual + 1;
   renderizar ();
 }
 
-//Función que habilita o desactiva los botoenes de la paginas dependiendo de si nos encontramos en la primera página o en la última.
+// Función que habilita o desactiva los botones de la paginas dependiendo de si nos encontramos en la primera página o en la última.
 function gestionBotones(){
   //Esto comprueba si no se puede retroceder
   if (paginaActual === 1 ) {
@@ -90,32 +84,102 @@ function gestionBotones(){
   }
 }
 
-// Llamar a renderizar inicialmente para mostrar la primera página
-renderizar();
-
-botonAtras.addEventListener("click", retrocederPagina);
-botonSiquiente.addEventListener('click', avanzarPagina);
-
 // BOTONES PRIMERA Y ULTIMA PÁGINA - NO ESTAN FUNCIONANDO LOS BOTONES
 const btnPagPrimera = document.getElementById("btnPagPrimera");
-btnPagPrimera.addEventListener('click', function() {
+const btnPagUltima = document.getElementById("btnPagUltima");
+
+function primeraPagina() {
   if (paginaActual !== 1){
     return renderizar(1);// Llamar a renderizar con la página 1
   } 
   else{
     btnPagPrimera.setAttribute("disabled", "true");
   }
-});
+}
 
-const btnPagUltima = document.getElementById("btnPagUltima");
-btnPagUltima.addEventListener('click', function() {
+function utimaPagina() {
   if (paginaActual !== paginasTotales){
     return renderizar(paginasTotales);// Llamar a renderizar con la última página
   } 
   else{
     btnPagUltima.setAttribute("disabled","true");
   }
-});
+}
+
+// Llamar a renderizar inicialmente para mostrar la primera página
+renderizar();
+
+// Llama a los botones para avanzar o retroceder
+botonAtras.addEventListener("click", retrocederPagina);
+botonSiquiente.addEventListener('click', avanzarPagina);
+btnPagPrimera.addEventListener('click', primeraPagina);
+btnPagUltima.addEventListener('click', utimaPagina)
+
+
+
+
+
+
+
+
+
+
+// FUNCIÓN AGNÓSTICA
+// const atletasUnicosOrdenados = eliminarDuplicadosYOrdenar('name', 'name');
+// const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
+// const atletasUnicosOrdenadosPorPais = eliminarDuplicadosYOrdenar(paisesFiltrados, 'name', 'name');
+
+// COPIADO
+// const menuPaises = document.getElementById('menuPaises');
+// const container = document.querySelector('.seccionAtletas');
+// const paginacion = document.querySelector('.btnPaginacion');
+
+// Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
+// const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
+// const paisesUnicos = Array.from(paisesUnicosSet);
+
+// paisesUnicos.sort(); // Ordenar alfabéticamente
+
+// paisesUnicos.forEach(team => {
+//   const option = document.createElement('option');
+//   option.value = team;
+//   option.textContent = team;
+//   menuPaises.appendChild(option);
+// });
+
+// Despliega nombres por pais
+// menuPaises.addEventListener('change', function() {
+//   const paisSeleccionado = menuPaises.value;
+//   if (paisSeleccionado) {
+//     const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
+
+// Obtener nombres únicos y ordenar alfabéticamente
+//     const paisesUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
+    
+//     container.innerHTML = '';
+//     paginacion.innerHTML = '';
+
+//     paisesUnicosOrdenados.forEach(nombre => {
+//       const nombreInfo = document.createElement("div");
+//       nombreInfo.classList.add("cardAtleta");
+
+//       nombreInfo.textContent = nombre;
+//       container.appendChild(nombreInfo);
+//     });
+//   } else {
+//     container.innerHTML = '';
+//     alert("Seleccione un país para filtrar");
+//   }
+// });
+
+
+
+
+
+
+
+
+
 
 /*const menuPaises = document.getElementById('menuPaises');
 const container = document.querySelector('.seccionAtletas');
@@ -158,8 +222,6 @@ menuPaises.addEventListener('change', function() {
     alert("Seleccione un país para filtrar");
   }
 });*/
-
-
 
 
 // Usar la función eliminarRepetidos para obtener atletas únicos
