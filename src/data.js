@@ -1,5 +1,4 @@
-import athletes from "./data/athletes/athletes.js";
-
+//import athletes from "./data/athletes/athletes.js";
 // FUNCION PARA ELIMINAR NOMBRES REPETIDOS
 export function eliminarRepetidos(athletes) { 
   const atletasUnicos = [];
@@ -24,8 +23,20 @@ export function ordenar (athletes) {
   y un valor positivo si el primer elemento debe estar después que el segundo.*/
 }
 
-const menuPaises = document.getElementById('menuPaises');
-const container = document.querySelector('.seccionAtletas');
+// FUNCION FILTRO POR PAIS
+export function filtroPais(input, athletes) {
+  return athletes.filter(item => item.team === input);
+}
+
+//Función para eliminar países repetidos y ordenarlos
+export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
+  const paisesFiltrados = filtroPais(paisSeleccionado, athletes);
+  const paisesUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
+  return paisesUnicosOrdenados;
+}
+
+
+/*const container = document.querySelector('.seccionAtletas');
 const paginacion = document.querySelector('.btnPaginacion');
 
 // FUNCION FILTRO POR PAIS
@@ -56,8 +67,18 @@ menuPaises.addEventListener('change', function() {
   const paisSeleccionado = menuPaises.value;
   if (paisSeleccionado) {
     const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
-    const nombresUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
-    renderizarPorPaises(nombresUnicosOrdenados, container);
+
+    
+    container.innerHTML = '';
+    paginacion.innerHTML = '';
+
+    nombresUnicosOrdenados.forEach(nombre => {
+      const nombreInfo = document.createElement("div");
+      nombreInfo.classList.add("cardAtleta");
+
+      nombreInfo.textContent = nombre;
+      container.appendChild(nombreInfo);
+    });
   } else {
     container.innerHTML = '';
     alert("Seleccione un país para filtrar");
