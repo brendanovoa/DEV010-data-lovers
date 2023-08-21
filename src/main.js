@@ -1,30 +1,35 @@
 /* eslint-disable no-console */
-// Aquí va todo lo relacionado con el DOM
+// AQUÍ VA TODO LO RELACIONADO CON EL DOM //
 
 import athletes from './data/athletes/athletes.js';
 
 import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar  /*filtroPais*/ } from './data.js'; 
 
-const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
-console.log(atletasSinRepetidos);
-
-const atletasOrdenados = ordenar(atletasSinRepetidos);
-//const container = document.querySelector('.seccionAtletas');
-
-
-// FUNCION PARA PAGINACIÓN
+// ELEMENTOS PARA RELACIÓN CON EL DOM
 const botonAtras = document.getElementById("atras");
 const contadorPagina = document.querySelector("#contadorPagina");
 const botonSiquiente = document.getElementById("siguiente");
+const btnPagPrimera = document.getElementById("btnPagPrimera");
+const btnPagUltima = document.getElementById("btnPagUltima");
+const paginacion = document.querySelector('.btnPaginacion');
+const menuPaises = document.getElementById('menuPaises');
+const container = document.querySelector('.seccionAtletas');
+const containerPaises = document.querySelector('.seccionPaises');
+const todosPaises = document.querySelector('.optTodos');
 
+
+
+// VARIABLES DE ATLETAS UNICOS Y  ORDENADOS
+const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
+const atletasOrdenados = ordenar(atletasSinRepetidos);
+
+// VARIABLESS PARA CALCULAR ITEMS POR PAGINA
 const itemsTotales = atletasOrdenados.length;
 const itemsPagina = 100;
 const paginasTotales = Math.ceil(itemsTotales / itemsPagina); // Usamos Math.ceil para redondear hacia arriba
 let paginaActual = 1;
-//let numPag = 2
-//itemsSkip = (numPag -1) * itemsPagina;
-//const items = atletasOrdenados.slice(itemsSkip, itemsPagina + itemsSkip)
 
+// FUNCION PARA OBTENER ITEMS POR PAGINA
 function obtenerDatos (pagina = 1){
   paginaActual = pagina; // Actualizamos la página actual
   const corteInicio = (pagina - 1) * itemsPagina;
@@ -35,16 +40,13 @@ function obtenerDatos (pagina = 1){
   //return elementos.slice(corteInicio, corteFinal);
 }
 
-//Funcion que llena el nuevo DOM a partir de las variables
+// FUNCION QUE LLENA EL NUEVO DOM A PARTIR DE LAS VARIABLLES
 function renderizar(){
   const cargaDatos = obtenerDatos(paginaActual);
   contadorPagina.textContent = `${paginaActual} / ${paginasTotales}`;
 
-  const container = document.querySelector('.seccionAtletas');
-  // const seccionAtletas = document.querySelector(".seccionAtletas").content/*.firstElementChild*/;
-  // No es necesaria. El método document.querySelector(".seccionAtletas") ya te proporciona una referencia al elemento con la clase .seccionAtletas, y no es necesario acceder a su contenido interno utilizando .content o .firstElementChild.
-
   container.innerHTML = ""; // Limpiar el contenido previo
+  containerPaises.innerHTML = ''; // Eliminar sección paises
 
   cargaDatos.forEach(function (datosSeccion){
     const atletas = document.createElement("div");
@@ -52,7 +54,6 @@ function renderizar(){
 
     // Actualizar el contenido del elemento de la card
     const card = document.createElement("p");
-    // const card = atletas.querySelector("p");
     card.textContent = datosSeccion.name;
     atletas.appendChild(card);
     container.appendChild(atletas);
@@ -60,19 +61,19 @@ function renderizar(){
   gestionBotones(); // Llamar a gestionBotones para actualizar los botones
 }
 
-//Función para retroceder de pagina
+// Función para retroceder de pagina
 function retrocederPagina() {
   paginaActual = paginaActual - 1;
   renderizar();
 }
 
-//Funcion para avanzar de pagina
+// Funcion para avanzar de pagina
 function avanzarPagina(){
   paginaActual = paginaActual + 1;
   renderizar ();
 }
 
-//Función que habilita o desactiva los botoenes de la paginas dependiendo de si nos encontramos en la primera página o en la última.
+// Función que habilita o desactiva los botones de la paginas dependiendo de si nos encontramos en la primera página o en la última.
 function gestionBotones(){
   //Esto comprueba si no se puede retroceder
   if (paginaActual === 1 ) {
@@ -90,40 +91,31 @@ function gestionBotones(){
   }
 }
 
+// BOTONES PRIMERA Y ULTIMA PÁGINA
+function primeraPagina() {
+  if (paginaActual !== 1){
+    paginaActual = 1; // Llamar a renderizar con la página 1
+    renderizar ();
+  } 
+}
+
+function ultimaPagina() {
+  if (paginaActual !== paginasTotales){
+    paginaActual = paginasTotales;// Llamar a renderizar con la última página
+    renderizar ();
+  } 
+}
+
 // Llamar a renderizar inicialmente para mostrar la primera página
 renderizar();
-
-botonAtras.addEventListener("click", retrocederPagina);
-botonSiquiente.addEventListener('click', avanzarPagina);
-
-// BOTONES PRIMERA Y ULTIMA PÁGINA - NO ESTAN FUNCIONANDO LOS BOTONES
-const btnPagPrimera = document.getElementById("btnPagPrimera");
-btnPagPrimera.addEventListener('click', function() {
-  if (paginaActual !== 1){
-    return renderizar(1);// Llamar a renderizar con la página 1
-  } 
-  else{
-    btnPagPrimera.setAttribute("disabled", "true");
-  }
-});
-
-const btnPagUltima = document.getElementById("btnPagUltima");
-btnPagUltima.addEventListener('click', function() {
-  if (paginaActual !== paginasTotales){
-    return renderizar(paginasTotales);// Llamar a renderizar con la última página
-  } 
-  else{
-    btnPagUltima.setAttribute("disabled","true");
-  }
-});
-
 
 // Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
 const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
 const paisesUnicos = Array.from(paisesUnicosSet);
 paisesUnicos.sort(); // Ordenar alfabéticamente
 //const paisesUnicosOrdenados = obtenerPaisesUnicosFiltrados;
-const menuPaises = document.getElementById('menuPaises');
+
+// CREAR EL MENU DESPLEGABLE CON LOS PAISES
 paisesUnicos.forEach(team => {
   const option = document.createElement('option');
   option.value = team;
@@ -131,102 +123,61 @@ paisesUnicos.forEach(team => {
   menuPaises.appendChild(option);
 });
 
-function renderizarPaises (nombresUnicos, container){
-  const paginacion = document.querySelector('.btnPaginacion');
+// COPIA DEL CONTENIDO DE PAGINACION PARA VOLVERLO A MOSTRAR CON INNERHTML
 
-  container.innerHTML = '';
-  paginacion.innerHTML = '';//Elimina los botones de paginación una vez filtrados los atletas por país
 
-  nombresUnicos.forEach(nombre => {
-    const nombreInfo = document.createElement("div");
-    nombreInfo.classList.add("cardAtleta");
-
-    nombreInfo.textContent = nombre;
-    container.appendChild(nombreInfo);
-  });
-}
-// Despliega nombres por pais
-//const menuPaises = document.getElementById('menuPaises');
+// DESPLIEGA NOMBRES POR PAIS
 menuPaises.addEventListener('change', function() {
-  const container = document.querySelector('.seccionAtletas');
   const paisSeleccionado = menuPaises.value;
   if (paisSeleccionado) {
     const nombresUnicosFiltrados = obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes.athletes);
     renderizarPaises(nombresUnicosFiltrados, container);  
+  } else if (todosPaises) {
+    renderizar (paginaActual=1);
+
+    // Clona y agrega todos los elementos de paginación nuevamente // NO FUNCIONAN BOTONES
+    paginacion.appendChild(btnPagPrimera.cloneNode(true));
+    paginacion.appendChild(botonAtras.cloneNode(true));
+    paginacion.appendChild(contadorPagina.cloneNode(true));
+    paginacion.appendChild(botonSiquiente.cloneNode(true));
+    paginacion.appendChild(btnPagUltima.cloneNode(true));
+
   } else {
     container.innerHTML = '';
     alert("Seleccione un país para filtrar");
   }
 });
 
+// RENDERIZAR LOS ATLETAS SEGÚN EL PAÍS SELECCIONADO
+function renderizarPaises (nombresUnicos, container){
+  container.innerHTML = '';
+  paginacion.innerHTML = ''; // Elimina los botones de paginación una vez filtrados los atletas por país
 
-/*const menuPaises = document.getElementById('menuPaises');
-const container = document.querySelector('.seccionAtletas');
-const paginacion = document.querySelector('.btnPaginacion');
-
-// Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
-const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
-const paisesUnicos = Array.from(paisesUnicosSet);
-
-paisesUnicos.sort(); // Ordenar alfabéticamente
-
-paisesUnicos.forEach(team => {
-  const option = document.createElement('option');
-  option.value = team;
-  option.textContent = team;
-  menuPaises.appendChild(option);
-});
-
-// Despliega nombres por pais
-menuPaises.addEventListener('change', function() {
-  const paisSeleccionado = menuPaises.value;
-  if (paisSeleccionado) {
-    const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
-
-    // Obtener nombres únicos y ordenar alfabéticamente
-    const nombresUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
-    
-    container.innerHTML = '';
-    paginacion.innerHTML = '';
-
-    nombresUnicosOrdenados.forEach(nombre => {
-      const nombreInfo = document.createElement("div");
-      nombreInfo.classList.add("cardAtleta");
-
-      nombreInfo.textContent = nombre;
-      container.appendChild(nombreInfo);
-    });
-  } else {
-    container.innerHTML = '';
-    alert("Seleccione un país para filtrar");
-  }
-});*/
-
-
-
-
-// Usar la función eliminarRepetidos para obtener atletas únicos
-// const atletasUnicos = eliminarRepetidos(paisesFiltrados);
-    
-// Ordenar alfabéticamente los atletas utilizando la función ordenar
-// const atletasOrdenados = ordenar(atletasUnicos);
-
-/*
-paisesFiltrados.forEach(athlete => {
-  //const athleteInfo = document.createElement('p');
-  const athleteInfo = document.createElement("div");
-  athleteInfo.classList.add("cardAtleta");
-
-  athleteInfo.textContent = `${athlete.name}, País: ${athlete.team}`;
-  containerPaisesFiltrados.appendChild(athleteInfo);
-});
-} else {
-  // containerPaisesFiltrados.innerHTML = 'Seleccione un pais para filtrar.';
-containerPaisesFiltrados.innerHTML = '';//'Seleccione un equipo para filtrar.';
-alert("Seleccione un país para filtrar");
-
+  nombresUnicos.forEach(nombre => {
+    const nombreInfo = document.createElement("div");
+    nombreInfo.classList.add("cardAtleta");
+    nombreInfo.textContent = nombre;
+    container.appendChild(nombreInfo);
+  });
 }
-});
+
+// Llama a los botones para avanzar o retroceder
+botonAtras.addEventListener("click", retrocederPagina);
+botonSiquiente.addEventListener('click', avanzarPagina);
+btnPagPrimera.addEventListener('click', primeraPagina);
+btnPagUltima.addEventListener('click', ultimaPagina);
+
+
+
+
+
+
+
+// FUNCIÓN AGNÓSTICA
+// const atletasUnicosOrdenados = eliminarDuplicadosYOrdenar('name', 'name');
+// const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
+// const atletasUnicosOrdenadosPorPais = eliminarDuplicadosYOrdenar(paisesFiltrados, 'name', 'name');
+
 
 /*
 // OBTENER DATOS DE PAISES
@@ -254,39 +205,7 @@ function ordenarPaises (athletes) {
   return athletes.team.sort ((a,b) => a.team.localeCompare(b.team));
 }
 const paisesOrdenados = ordenarPaises (paisesSinRepetidos);
-
-// MOSTRAR PAISES EN DESPLEGABLLE
-const menuPaises = document.getElementById('menuPaises');
-const containerPaisesFiltrados = document.getElementById('paisesFiltrados');
-
-paisesOrdenados.forEach(team => {
-  const option = document.createElement('option');
-  option.value = team;
-  option.textContent = team;
-  menuPaises.appendChild(option);
-});
-
-function filtroPais(inputPais, data) {
-  return data.filter(item => item.team === inputPais);
-}
-
-menuPaises.addEventListener('change', function() {
-  const paisSeleccionado = menuPaises.value;
-  if (paisSeleccionado) {
-    const paisesFiltrados = filtroPais(paisSeleccionado, athletes.athletes);
-    containerPaisesFiltrados.innerHTML = '';
-
-    paisesFiltrados.forEach(athlete => {
-      const athleteInfo = document.createElement('p');
-      athleteInfo.textContent = `Nombre del equipo: ${athlete.name}, Equipo: ${athlete.team}`;
-      containerPaisesFiltrados.appendChild(athleteInfo);
-    });
-  } else {
-    containerPaisesFiltrados.innerHTML = 'Seleccione un equipo para filtrar.';
-  }
-});
 */
-
 
 /*
 // PRUEBAS FILTRO POR PAIS
@@ -309,41 +228,19 @@ const atletaData = {
 }
 */
 
-// Clonar la plantilla de la tarjeta de atleta
+// Clonar la plantilla de la tarjeta de atleta //
 // const plantillaAtleta = document.querySelector(".cardAtleta");
 // const atletas = plantillaAtleta.cloneNode(true);
 // const atletas = container.querySelector(".cardAtleta").cloneNode(true);
 // const atletas = container.cloneNode(true);
 
-/* FUNCIÓN PARA VERIFICAR QUÉ DATOS SE ESTABAN OBTENIENDO
-  function verificarObtencionDeDatos() {
+// FUNCIÓN PARA VERIFICAR QUÉ DATOS SE ESTABAN OBTENIENDO //
+/* function verificarObtencionDeDatos() {
   for (let pagina = 1; pagina <= paginasTotales; pagina++) {
     const datosPagina = obtenerDatos(pagina);
     console.log(`Página ${pagina}:`, datosPagina);
   } } verificarObtencionDeDatos();*/
 
-// BUCLE FOR PARA MOSTRAR LOS NOMBRES EN LAS CARDS
-// for (let i=0; i < atletasPagina.length; i++){
-//   container.innerHTML += `
-//   <div class="cardAtleta">
-//       <p>${atletasPagina[i].name}</p>
-//   </div>`
-// }
-
-// const cargaDatos = obtenerDatos(paginaActual);
-// contadorPagina.textContent = `${paginaActual}/${paginasTotales()}`;
-// console.log(Array.isArray(cargaDatos)) // La función Array.isArray(cargaDatos) devuelve un valor booleano que indica si el argumento pasado es un array o no. En este caso, devolverá true si cargaDatos es un array y false si no lo es.
-// cargaDatos.forEach(function (datosSeccion){
-// const atletas = seccionAtletas.cloneNode(true);
-// const card = atletas.querySelector(".cardAtleta");
-// card.textContent = datosSeccion.textContent;
-// container.appendChild(atletas);
-// });
-
-// function paginasTotales(){
-//   const elementosTotales = document.querySelectorAll('.cardAtleta').length;
-//   return Math.ceil(elementosTotales.length / elementosPorPagina);
-// }
 
 // BUCLE FOR PARA MOSTRAR LOS NOMBRES EN LAS CARDS
 /*for (let i=0; i < atletasOrdenados.length; i++){
@@ -368,7 +265,8 @@ const atletaData = {
 // const atletasSinRepetidos = eliminarAtletasRepetidos(data.athletes);
 // const container = document.querySelector('.seccionAtletas');
 
-// EJEMPLO CARLOS
+
+// EJEMPLO CARLOS //
 /*const root = document.getElementById('root')
 const renderHtml=(todaslasPersonas)=>{
   let html = ''
@@ -388,7 +286,8 @@ const nombres=[
 root.innerHTML= renderHtml(nombres)
 root.innerHTML= '<marquee>Soy una serpiente que anda por el bosque</marquee>'*/
 
-/* CÓDIGO DE CARO PULIDO PARA PAGINACIÓN*/
+
+// CÓDIGO DE CARO PULIDO PARA PAGINACIÓN //
 // const items = 20;
 // let totalPages;
 

@@ -7,6 +7,7 @@ main{
     background-image: url('./imgs/fondos/Fondos\ propuestas_Propuesta\ 2\ -\ 01.jpg');
     width: 100%;
     height: fit-content;
+    min-height: 820px;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -78,6 +79,13 @@ main{
     color: white;
     justify-content: space-around;
     align-items: center;
+    
+}
+
+.btnPaginacion{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
 }
 
 .btn{
