@@ -4,31 +4,84 @@
     <meta charset="utf-8">
     <title>Data Lovers</title>
     <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Quattrocento+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
-    <script src="main.js" type="module"></script>
-    
+    <header>
+      <!--Menú-->
+      <div class="navbar">
+        <div class="menu">
+          <img src="./imgs/logos/logo_aros.png" alt="Aros olimpicos">
+          <a class="menuPaises" href="#">Países</a>
+          <a class="menuAtletas" href="#">Atletas</a>
+          <a class="menuEquidad" href="#">Equidad de Género</a> 
+          <img src="./imgs/logos/logo_horizontal.png" alt="Logo Rio 2016">
+        </div>
+      </div>
+    </header>
     <main>
-      <header>
-        <!--<img src="/src/imgs/logos/logo rio.png" placeholder="Rio 2016">-->
-        <h1>Rio 2016</h1>
-      </header>
-    </main>
-    
-    <div class="container">
+    <!--Página de acceso-->
+    <!-- <div class="container">
       <button class="button" href="#">Entrar</button>
+    </div> -->
 
-    </div>
+    <!--Cards de países-->
+    <section class="seccionPaises">
+      <h2>Paises participantes</h2>
+      <div class="cardPais">
+        <div class="nombrePais">
+          <p>Pais (Nomenclatura)</p>
+        </div>
+        <div class="medallas">
+          <span class="medallaOro">Oro</span>
+          <span class="medallaPlata">Plata</span>
+          <span class="medallaBronce">Bronce</span>
+        </div>
+      </div>
+    </section>
 
-    <!--Menú-->
-      <!--<nav>
-        <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Países</a></li>
-          <li><a href="#">Atletas</a></li>
-          <li><a href="#">Equidad de Género</a> </li>
-        </ul>
-      </nav>-->
+    <!--Cards de atletas-->
+    <section class="navSeccion">
+      <!--Título-->
+      <h2>Atletas participantes</h2>
+      <!--Paginacion-->
+      <div class="btnPaginacion">
+        <button id="btnPagPrimera" class="btn">P.1</button>
+        <button id="atras" class="btnFlecha"> << </button> <!--Boton para retroceder pagina-->
+        <span id="contadorPagina"></span> <!--Informacion de la pagina actual-->
+        <button id="siguiente" class="btnFlecha"> >> </button> <!--Boton para avanzar de pagina-->
+        <button id="btnPagUltima" class="btn">P.19</button>
+      </div>
+      
+      <!--Menu deplegable-->
+      <div class="menuDesplegable">
+        <select id="menuPaises">
+          <option value="">Selecciona un pais</option>
+          <option value="" class="optTodos">Todos los paises</option>
+        </select>
+      </div>
+      <!--Buscador-->
+      <!-- <input id="buscador" class="inputBuscar" type="text" placeholder="Buscar"> -->
+    </section>
+    
+    <section class="seccionAtletas">
+      <!-- <div class="cardAtleta"></div> -->
+      <div class="cardAtleta">
+        <p></p>
+        <!-- ${atletasPagina[i].name} -->
+      </div>
+    </section>
+      
+    <!--Grafica de equidad de genero-->
+
+    </main>
+      <footer>
+        <p>Creado por Jazmin Ruíz Orbe y Brenda Hernández Novoa</p>
+      </footer>
+    <script src="main.js" type="module"></script>  
   </body>
 </html>
