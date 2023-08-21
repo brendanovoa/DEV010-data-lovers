@@ -1,4 +1,4 @@
-// AQUÍ VAN TODAS LAS FUNCIONES QUE OBTIENEN, PROCESASN Y MANIPULAN DATOSS //
+// AQUÍ VAN TODAS LAS FUNCIONES QUE OBTIENEN, PROCESASN Y MANIPULAN DATOS //
 
 // FUNCION PARA ELIMINAR NOMBRES REPETIDOS
 export function eliminarRepetidos(athletes) { 
@@ -32,6 +32,7 @@ export function filtroPais(input, athletes) {
 // FUNCION PARA ELIMINAR PAISES REPETIDOS Y ORDENARLOS
 export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
   const paisesFiltrados = filtroPais(paisSeleccionado, athletes);
+  // eslint-disable-next-line no-undef
   const paisesUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
   return paisesUnicosOrdenados;
 }

@@ -18,7 +18,6 @@ const containerPaises = document.querySelector('.seccionPaises');
 const todosPaises = document.querySelector('.optTodos');
 
 
-
 // VARIABLES DE ATLETAS UNICOS Y  ORDENADOS
 const atletasSinRepetidos = eliminarRepetidos(athletes.athletes);
 const atletasOrdenados = ordenar(atletasSinRepetidos);
@@ -110,6 +109,7 @@ function ultimaPagina() {
 renderizar();
 
 // Obtener valores únicos de la propiedad 'team' y agregarlos a la lista desplegable
+// eslint-disable-next-line no-undef
 const paisesUnicosSet = new Set(athletes.athletes.map(athlete => athlete.team));
 const paisesUnicos = Array.from(paisesUnicosSet);
 paisesUnicos.sort(); // Ordenar alfabéticamente
@@ -133,17 +133,18 @@ menuPaises.addEventListener('change', function() {
     const nombresUnicosFiltrados = obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes.athletes);
     renderizarPaises(nombresUnicosFiltrados, container);  
   } else if (todosPaises) {
-    renderizar (paginaActual=1);
-
-    // Clona y agrega todos los elementos de paginación nuevamente // NO FUNCIONAN BOTONES
-    paginacion.appendChild(btnPagPrimera.cloneNode(true));
-    paginacion.appendChild(botonAtras.cloneNode(true));
-    paginacion.appendChild(contadorPagina.cloneNode(true));
-    paginacion.appendChild(botonSiquiente.cloneNode(true));
-    paginacion.appendChild(btnPagUltima.cloneNode(true));
-
+    renderizar ();
+    paginaActual = 1;
+    // Agrega todos los elementos de paginación nuevamente
+    paginacion.appendChild(btnPagPrimera);
+    paginacion.appendChild(botonAtras);
+    paginacion.appendChild(contadorPagina);
+    paginacion.appendChild(botonSiquiente);
+    paginacion.appendChild(btnPagUltima);
+    
   } else {
     container.innerHTML = '';
+    // paginacion.innerHTML = '';
     alert("Seleccione un país para filtrar");
   }
 });
