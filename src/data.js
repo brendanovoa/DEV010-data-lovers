@@ -15,7 +15,7 @@ export function eliminarRepetidos(athletes) {
   return atletasUnicos;
 }
 
-// FUNCION PARA ORDENAR AFABETICAMENTE
+// FUNCION PARA ORDENAR ALFABETICAMENTE
 export function ordenar (athletes) {
   return athletes.sort((a,b) => a.name.localeCompare(b.name));
 }
@@ -37,7 +37,13 @@ export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
   return paisesUnicosOrdenados;
 }
 
-
+//Función para sacar el nombre de los paises
+/*export function infoPaises(athletes) {
+  // Obtener los nombres únicos de los países de la lista de atletas
+  // eslint-disable-next-line no-undef
+  const paisesUnicos = [...new Set(athletes.map(athlete => athlete.team))].sort();
+  return paisesUnicos;
+}*/
 /*
 // FUNCION FILTRO POR PAIS
 // Filtrar y ordenar los nombres eliminando repetidos

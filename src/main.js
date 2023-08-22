@@ -3,19 +3,22 @@
 
 import athletes from './data/athletes/athletes.js';
 
-import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar  /*filtroPais*/ } from './data.js'; 
+import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar, /*infoPaises*//*filtroPais*/ } from './data.js'; 
 
 // ELEMENTOS PARA RELACIÓN CON EL DOM
-const botonAtras = document.getElementById("atras");
+const botonAtras = document.getElementById('atras');
 const contadorPagina = document.querySelector("#contadorPagina");
-const botonSiquiente = document.getElementById("siguiente");
-const btnPagPrimera = document.getElementById("btnPagPrimera");
-const btnPagUltima = document.getElementById("btnPagUltima");
+const botonSiquiente = document.getElementById('siguiente');
+const btnPagPrimera = document.getElementById('btnPagPrimera');
+const btnPagUltima = document.getElementById('btnPagUltima');
 const paginacion = document.querySelector('.btnPaginacion');
-const menuPaises = document.getElementById('menuPaises');
+const menuPaises = document.getElementById('menuPaises');//Menu desplegable
 const container = document.querySelector('.seccionAtletas');
-const containerPaises = document.querySelector('.seccionPaises');
-const todosPaises = document.querySelector('.optTodos');
+const btnAtletas = document.getElementById('btnAtletas');
+const btnPais = document.getElementById('btnPais');
+const containerAtletas = document.querySelector('.navSeccion');
+const containerPaises = document.querySelector('.seccionPaises');//Variable  para la Sección de Países Participantes 
+const todosPaises = document.querySelector('.optTodos');//Variable para agregar al menú despegable la opción para volver a despeglar todos los países.
 
 
 // VARIABLES DE ATLETAS UNICOS Y  ORDENADOS
@@ -126,7 +129,7 @@ paisesUnicos.forEach(team => {
 // COPIA DEL CONTENIDO DE PAGINACION PARA VOLVERLO A MOSTRAR CON INNERHTML
 
 
-// DESPLIEGA NOMBRES POR PAIS
+// DESPLIEGA NOMBRES POR PAIS (MENU DESPLEGABLE)
 menuPaises.addEventListener('change', function() {
   const paisSeleccionado = menuPaises.value;
   if (paisSeleccionado) {
@@ -167,12 +170,60 @@ botonAtras.addEventListener("click", retrocederPagina);
 botonSiquiente.addEventListener('click', avanzarPagina);
 btnPagPrimera.addEventListener('click', primeraPagina);
 btnPagUltima.addEventListener('click', ultimaPagina);
+btnAtletas.addEventListener("click", renderizar);// boton para mostrar información de los atletas
+btnPais.addEventListener("click", mostrarInformacionPaises);
+
+// Función para mostrar la información de los países
+function mostrarInformacionPaises() {
+  containerAtletas.innerHTML = ""; //Borra el contenido actual de la sección Atletlas
+  paginacion.innerHTML = ""; // Borra los botones de paginación
+  container.innerHTML = "";//Borra el menu desplegable
+
+  const seccionPaises = document.querySelector(".seccionPaises");
+  //seccionPaises.innerHTML = "<h2>Países participantes</h2>";
+  //Funcion que verifica si la sección tiene contenido y evita duplicar cards al momento de volver dar click en el boton de "Paises"  
+  if (seccionPaises.hasChildNodes()){
+    seccionPaises.innerHTML="";
+  }
+  // Recorrer el arreglo de países únicos y agrega la información de cada uno a la sección
+  paisesUnicos.forEach(function (pais) {
+    const cardPais = document.createElement("div");
+    cardPais.classList.add("cardPais");
+    cardPais.textContent = pais;
+    seccionPaises.appendChild(cardPais);
+  });
+}
 
 
 
 
 
+//VARABLES PARA PRUEBA DE CAMBIO DE SECCIÓN 
+/*const btnNavPais = document.querySelector('.menuPaises');
 
+function cambioPais( ){
+  containerAtletas.innerHTML = ""; //Borra el contenido actual de la sección Atletlas
+  paginacion.innerHTML = ""; // Borra los botones de paginación
+  container.innerHTML = "";//Borra el menu desplegable
+  
+
+  const datosPaises =  infoPaises (athletes.athletes);
+  // Limpiar el contenido previo
+  
+  datosPaises.forEach(function (datosPais){
+    const pais = document.createElement("div");
+    pais.classList.add("cardPais");
+    
+    // Actualizar el contenido del elemento de la card
+    const card = document.createElement("p");
+    card.textContent = datosPais.team;
+    pais.appendChild(card);console.log(pais);
+    containerPaises.appendChild(pais);
+    
+  });
+}
+
+btnNavPais.addEventListener('click',cambioPais);
 
 // FUNCIÓN AGNÓSTICA
 // const atletasUnicosOrdenados = eliminarDuplicadosYOrdenar('name', 'name');
