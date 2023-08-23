@@ -15,7 +15,7 @@ export function eliminarRepetidos(athletes) {
   return atletasUnicos;
 }
 
-// FUNCION PARA ORDENAR AFABETICAMENTE
+// FUNCION PARA ORDENAR ALFABETICAMENTE
 export function ordenar (athletes) {
   return athletes.sort((a,b) => a.name.localeCompare(b.name));
 }
@@ -37,6 +37,7 @@ export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
   return paisesUnicosOrdenados;
 }
 
+calculoMedallas
 // FUNCION PARA CONTAR MEDALLAS POR PAIS
 export function conteoMedallas (athletes) {
   const medallasPorPais = {};
@@ -143,7 +144,6 @@ export function conteoMedallas(athletes){
 return medallasPorPais;
 }
 */
-
 
 /*
 // FUNCION FILTRO POR PAIS
