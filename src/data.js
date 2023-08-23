@@ -37,7 +37,6 @@ export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
   return paisesUnicosOrdenados;
 }
 
-calculoMedallas
 // FUNCION PARA CONTAR MEDALLAS POR PAIS
 export function conteoMedallas (athletes) {
   const medallasPorPais = {};
