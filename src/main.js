@@ -5,8 +5,9 @@ import athletes from './data/athletes/athletes.js';
 
 import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar, conteoMedallas, /*filtroPais*/ } from './data.js'; 
 
+
 // ELEMENTOS PARA RELACIÓN CON EL DOM
-const botonAtras = document.getElementById('atras');
+const botonAtras = document.getElementById("atras");
 const contadorPagina = document.querySelector("#contadorPagina");
 const botonSiquiente = document.getElementById("siguiente");
 const btnPagPrimera = document.getElementById("btnPagPrimera");
@@ -29,7 +30,6 @@ const container = document.querySelector('.seccionAtletas');
 const menuPaises = document.getElementById('menuPaises');
 //const menuDesplegable = document.querySelector('.menuDesplegable');
 const todosPaises = document.querySelector('.optTodos');
-
 
 const contenidoTituloAtletas = tituloAtletas.innerHTML;
 const contenidoTituloPaises = tituloPaises.innerHTML;
@@ -200,6 +200,11 @@ botonAtras.addEventListener("click", retrocederPagina);
 botonSiquiente.addEventListener('click', avanzarPagina);
 btnPagPrimera.addEventListener('click', primeraPagina);
 btnPagUltima.addEventListener('click', ultimaPagina);
+
+
+
+
+
 
 // LLENAR EL NUEVO DOM A PARTIR DE PAISES //
 
