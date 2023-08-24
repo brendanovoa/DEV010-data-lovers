@@ -330,6 +330,7 @@ linkAtletas.addEventListener("click", renderizar);
 
 
 
+
 // INTENTOS DE CARGAR CONTEO DE MEDALLAS
 /*
 function renderizarCardsPaises(){
