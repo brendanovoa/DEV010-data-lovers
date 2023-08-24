@@ -1,4 +1,4 @@
-import { eliminarRepetidos, ordenar, filtroPais, obtenerPaisesUnicosFiltrados } from '../src/data.js';
+import { eliminarRepetidos, ordenar, filtroPais, obtenerPaisesUnicosFiltrados, conteoMedallas } from '../src/data.js';
 
 
 describe('eliminarRepetidos', () => {
@@ -198,5 +198,66 @@ describe('obtenerPaisesUnicosFiltrados', () => {
     expect(obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes)).toEqual([
       "Luc Abalo"
     ]);
+  });
+});
+
+describe('conteoMedallas', () => {
+  it('is a function', () => {
+    expect(typeof conteoMedallas).toBe('function');
+  });
+
+  it('debería contar las medallas por tipo y por pais', () => {
+    const athletes = [{
+      "name": "Denis Mikhaylovich Ablyazin",
+      "gender": "M",
+      "height": "161",
+      "weight": "62",
+      "sport": "Gymnastics",
+      "team": "Russia",
+      "noc": "RUS",
+      "age": 24,
+      "event": "Gymnastics Men's Team All-Around",
+      "medal": "Silver"
+    },
+    {
+      "name": "Denis Mikhaylovich Ablyazin",
+      "gender": "M",
+      "height": "161",
+      "weight": "62",
+      "sport": "Gymnastics",
+      "team": "Russia",
+      "noc": "RUS",
+      "age": 24,
+      "event": "Gymnastics Men's Horse Vault",
+      "medal": "Silver"
+    },
+    {
+      "name": "Denis Mikhaylovich Ablyazin",
+      "gender": "M",
+      "height": "161",
+      "weight": "62",
+      "sport": "Gymnastics",
+      "team": "Russia",
+      "noc": "RUS",
+      "age": 24,
+      "event": "Gymnastics Men's Rings",
+      "medal": "Bronze"
+    },
+    {
+      "name": "Artur Kamilevich Akhmatkhuzin",
+      "gender": "M",
+      "height": "187",
+      "weight": "79",
+      "sport": "Fencing",
+      "team": "Russia",
+      "noc": "RUS",
+      "age": 28,
+      "event": "Fencing Men's Foil, Team",
+      "medal": "Gold"
+    },];
+    const medallasPorPais = conteoMedallas(athletes);
+    expect(medallasPorPais).toEqual({
+      Russia: { Gold: 1, Silver: 2, Bronze: 1 },
+    });
   });
 });
