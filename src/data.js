@@ -50,7 +50,7 @@ export function conteoMedallas (athletes) {
       medallasPorPais[pais].Bronze++;
     } else if (medalla === "Silver") {
       medallasPorPais[pais].Silver++;
-    } else if (medalla === "Gold") {
+    } else {
       medallasPorPais[pais].Gold++;
     }
   });

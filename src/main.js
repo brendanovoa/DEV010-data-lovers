@@ -108,6 +108,7 @@ function renderizar(){
   tituloPaises.innerHTML = ''; // Eliminar título paises
   tituloAtletas.innerHTML = contenidoTituloAtletas; // Cargar título atletas
   menuPaises.innerHTML = contenidoMenuPaises; // Cargar menú desplegable
+  menuPaises.style.display = "inline-block";
   //menuDesplegable.innerHTML = contenidoMenuDesplegable;
   cargarOpcionesMenu(paisesUnicos, menuPaises);
   
@@ -277,6 +278,7 @@ function renderizarCardsPaises(){
   paginacion.innerHTML = ''; // Eliminar paginación atletas
   tituloAtletas.innerHTML = ''; // Eliminar título atletas
   menuPaises.innerHTML = ''; // Eliminar filtro por paises
+  menuPaises.style.display = "none";
   tituloPaises.innerHTML = contenidoTituloPaises; // Mostrar título
   //menuDesplegable.innerHTML = '';
 
