@@ -1,4 +1,4 @@
-import { eliminarRepetidos, ordenar, filtroPais, obtenerPaisesUnicosFiltrados, conteoMedallas } from '../src/data.js';
+import { eliminarRepetidos, ordenar, filtroPais, obtenerPaisesUnicosFiltrados, conteoMedallas, conteoMujeres, ordenarPaisesMujeres } from '../src/data.js';
 
 
 describe('eliminarRepetidos', () => {
@@ -259,5 +259,91 @@ describe('conteoMedallas', () => {
     expect(medallasPorPais).toEqual({
       Russia: { Gold: 1, Silver: 2, Bronze: 1 },
     });
+  });
+});
+
+describe('conteoMujeres', () => {
+  it('is a function', () => {
+    expect(typeof conteoMujeres).toBe('function');
+  });
+
+  it('debería contar las mujeres por pais', () => {
+    const athletes = [{
+      "name": "Chantal Achterberg",
+      "gender": "F",
+      "height": "172",
+      "weight": "72",
+      "sport": "Rowing",
+      "team": "Netherlands",
+      "noc": "NED",
+      "age": 31,
+      "event": "Rowing Women's Quadruple Sculls",
+      "medal": "Silver"
+    },
+    {
+      "name": "Nicola Virginia Adams",
+      "gender": "F",
+      "height": "164",
+      "weight": "51",
+      "sport": "Boxing",
+      "team": "Spain",
+      "noc": "GBR",
+      "age": 33,
+      "event": "Boxing Women's Flyweight",
+      "medal": "Gold"
+    },];
+    const mujeresPorPais = conteoMujeres(athletes.athletes);
+    expect(mujeresPorPais).toEqual({
+      Netherlands: {F: 1, M: 0},
+      Spain: {F: 1, M: 0},
+    });
+  });
+});
+
+describe('ordenarPaisesMujeres', () => {
+  it('is a function', () => {
+    expect(typeof ordenarPaisesMujeres).toBe('function');
+  });
+
+  it('debería ordenar los paises por el número de mujeres', () => {
+    const athletes = [{
+      "name": "Chantal Achterberg",
+      "gender": "F",
+      "height": "172",
+      "weight": "72",
+      "sport": "Rowing",
+      "team": "Netherlands",
+      "noc": "NED",
+      "age": 31,
+      "event": "Rowing Women's Quadruple Sculls",
+      "medal": "Silver"
+    },
+    {
+      "name": "Nicola Virginia Adams",
+      "gender": "F",
+      "height": "164",
+      "weight": "51",
+      "sport": "Boxing",
+      "team": "Spain",
+      "noc": "GBR",
+      "age": 33,
+      "event": "Boxing Women's Flyweight",
+      "medal": "Gold"
+    },
+    {
+      "name": "Patimat Abakarova",
+      "gender": "F",
+      "height": "165",
+      "weight": "49",
+      "sport": "Taekwondo",
+      "team": "Spain",
+      "noc": "AZE",
+      "age": 21,
+      "event": "Taekwondo Women's Flyweight",
+      "medal": "Bronze"
+    },];
+    expect(ordenarPaisesMujeres(athletes)).toEqual(
+      ["0", "1", "2"]
+    );
   });
 });
