@@ -45,6 +45,7 @@
       <h2 class="tituloPaises">Paises participantes</h2>
       <!--Título Equidad-->
       <h2 class="tituloEquidad">Equidad de género</h2>
+      <p class="textoEquidad">¿Cuántas mujeres acudieron a representar a cada país?</p>
 
       <!--Paginacion Atletas-->
       <div class="paginacionAtletas">
@@ -67,12 +68,12 @@
       </div>
 
       <!--Menu deplegable-->
-      <div class="menuDesplegable">
+      <!-- <div class="menuDesplegable"> -->
         <select id="menuPaises">
           <option value="">Selecciona un pais</option>
           <option value="" class="optTodos">Todos los paises</option>
         </select>
-      </div>
+      <!-- </div> -->
 
       <!--Buscador-->
       <!-- <input id="buscador" class="inputBuscar" type="text" placeholder="Buscar"> -->
@@ -111,10 +112,13 @@
       <div id="grafica" class="grafica"></div>
     </section>
 
-
     </main>
-      <footer>
-        <p>Creado por Jazmin Ruíz Orbe y Brenda Hernández Novoa</p>
-      </footer>
+    <footer>
+      <p>Creado por Jazmin Ruíz Orbe y Brenda Hernández Novoa</p>
+    </footer>
+    <dialog id="modal" class="modal">
+      <button id="btnCerrarDatos">X</button>
+        <ul class="datosAtleta"></ul>
+    </dialog>
   </body>
 </html>
