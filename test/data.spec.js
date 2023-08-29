@@ -291,11 +291,22 @@ describe('conteoMujeres', () => {
       "age": 33,
       "event": "Boxing Women's Flyweight",
       "medal": "Gold"
+    },{
+      "name": "Artur Kamilevich Akhmatkhuzin",
+      "gender": "M",
+      "height": "187",
+      "weight": "79",
+      "sport": "Fencing",
+      "team": "Spain",
+      "noc": "RUS",
+      "age": 28,
+      "event": "Fencing Men's Foil, Team",
+      "medal": "Gold"
     },];
-    const mujeresPorPais = conteoMujeres(athletes.athletes);
+    const mujeresPorPais = conteoMujeres(athletes);
     expect(mujeresPorPais).toEqual({
       Netherlands: {F: 1, M: 0},
-      Spain: {F: 1, M: 0},
+      Spain: {F: 1, M: 1},
     });
   });
 });

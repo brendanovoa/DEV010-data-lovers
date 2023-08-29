@@ -25,12 +25,15 @@ const contadorPaginaPaises = document.querySelector("#contadorPaginaPaises");
 const tituloPaises = document.querySelector('.tituloPaises');
 const tituloAtletas = document.querySelector('.tituloAtletas');
 const tituloEquidad = document.querySelector('.tituloEquidad');
+const textoEquidad = document.querySelector('.textoEquidad');
 const linkPaises = document.querySelector('.Paises');
 const linkAtletas = document.querySelector('.Atletas');
 const linkEquidad = document.querySelector('.Equidad');
 const containerPaises = document.querySelector('.seccionPaises');
 const containerAtletas = document.querySelector('.seccionAtletas');
 const containerEquidad = document.querySelector('.seccionEquidad');
+//const cardAtleta = document.querySelectorAll('.cardAtleta');
+const dialog = document.querySelector('dialog');
 
 const menuPaises = document.getElementById('menuPaises');
 //const menuDesplegable = document.querySelector('.menuDesplegable');
@@ -120,7 +123,9 @@ function renderizar(){
   containerPaises.style.display = "none";
   paginacionPaises.style.display = "none";
   tituloEquidad.style.display = "none";
+  textoEquidad.style.display = "none";
   containerEquidad.style.display = "none";
+  dialog.style.display = "none";
 
   //menuDesplegable.innerHTML = contenidoMenuDesplegable;
   cargarOpcionesMenu(paisesUnicos, menuPaises);
@@ -140,9 +145,70 @@ function renderizar(){
     card.textContent = datosSeccion.name;
     atletas.appendChild(card);
     containerAtletas.appendChild(atletas);
+
+    // Evento de clic en la card de atleta para mostrar modal
+    atletas.addEventListener('click', () => {
+      mostrarModal(datosSeccion); // Llama a la función para mostrar el modal
+      dialog.style.display = "flex";
+    });
+    
   });
   gestionBotones(); // Llamar a gestionBotones para actualizar los botones
 }
+
+// MODAL
+// Función para mostrar el modal con los datos del atleta seleccionado
+function mostrarModal(datosSeccion) {
+  modal.innerHTML =  '';
+
+  const cerrar = document.createElement("button");
+  cerrar.textContent = `x`;
+  modal.appendChild(cerrar);
+  cerrar.addEventListener('click', () => {
+    dialog.style.display = "none";
+    modal.close();
+  });
+  
+  const nombre = document.createElement("p");
+  nombre.textContent = `${datosSeccion.name}`;
+  modal.appendChild(nombre);
+  nombre.style.backgroundColor = "#FCBE0E";
+  nombre.style.height = "4rem";
+  nombre.style.fontWeight = "500";
+
+  const edad = document.createElement("p");
+  edad.textContent = `Edad: ${datosSeccion.age}`;
+  modal.appendChild(edad);
+
+  const genero = document.createElement("p");
+  genero.textContent = `Género: ${datosSeccion.gender}`;
+  modal.appendChild(genero);
+
+  const peso = document.createElement("p");
+  peso.textContent = `Peso: ${datosSeccion.weight} kg`;
+  modal.appendChild(peso);
+
+  const altura = document.createElement("p");
+  altura.textContent = `Altura: ${datosSeccion.height} cm`;
+  modal.appendChild(altura);
+
+  const equipo = document.createElement("p");
+  equipo.textContent = `País: ${datosSeccion.team}`;
+  modal.appendChild(equipo);
+
+  const deporte = document.createElement("p");
+  deporte.textContent = `Deporte: ${datosSeccion.sport}`;
+  modal.appendChild(deporte);
+
+  modal.showModal();
+}
+
+// Evento de clic en el modal para cerrarlo
+modal.addEventListener('click', () => {
+  modal.close();
+});
+
+
 
 // Función para retroceder de pagina
 function retrocederPagina() {
@@ -195,6 +261,8 @@ renderizar();
 // RENDERIZAR LOS ATLETAS SEGÚN EL PAÍS SELECCIONADO
 function renderizarPaises (nombresUnicos, container){
   container.innerHTML = '';
+  modal.innerHTML =  '';
+  modal.close();
   paginacionAtletas.innerHTML = ''; // Elimina los botones de paginación una vez filtrados los atletas por país
 
   menuPaises.innerHTML = contenidoMenuPaises; // Cargar menú desplegable
@@ -207,7 +275,15 @@ function renderizarPaises (nombresUnicos, container){
     nombreInfo.textContent = nombre;
     container.appendChild(nombreInfo);
   });
+  // Cargar el modal en la sección por paises // NO FUNCIONA !!!
+  /*nombresUnicos.forEach(function (datosSeccion){
+      // Evento de clic en la card de atleta para mostrar modal
+      nombreInfo.addEventListener('click', () => {
+        mostrarModal(datosSeccion); // Llama a la función para mostrar el modal
+        dialog.style.display = "flex";
+      });*/
 }
+
 
 // Llama a los botones para avanzar o retroceder
 botonAtras.addEventListener("click", retrocederPagina);
@@ -288,6 +364,7 @@ function renderizarCardsPaises(){
 
   containerPaises.innerHTML = ''; // Limpiar el contenido previo
   menuPaises.innerHTML = ''; // Eliminar filtro por paises
+  paginacionPaises.innerHTML = '';
 
   tituloPaises.style.display = "flex";
   tituloPaises.innerHTML = contenidoTituloPaises; // Mostrar título
@@ -301,6 +378,7 @@ function renderizarCardsPaises(){
   menuPaises.style.display = "none";
 
   tituloEquidad.style.display = "none";
+  textoEquidad.style.display = "none";
   containerEquidad.style.display = "none";
 
   paginacionPaises.appendChild(btnPagPrimeraPaises);
@@ -347,14 +425,12 @@ btnPagUltimaPaises.addEventListener('click', ultimaPaginaPaises);
 
 
 
-
-
-
 // FUNCION PARA RENDERIZAR EQUIDAD DE GÉNERO
 function renderizarEquidad(){
 
   containerEquidad.innerHTML = ''; // Limpiar el contenido previo
-  tituloEquidad.style.display = "flex";
+  tituloEquidad.style.display = "grid";
+  textoEquidad.style.display = "grid";
   containerEquidad.style.display = "grid";
 
   tituloAtletas.style.display = "none";
@@ -374,8 +450,6 @@ function renderizarEquidad(){
     const nombrePais = document.createElement("p");
     nombrePais.textContent = pais;
     cardEquidad.appendChild(nombrePais);
-
-    console.log(mujeresPorPais);
 
     // Obtener las mujeres por país del objeto mujeresPorPais
     const mujeresPais = mujeresPorPais[pais];
@@ -426,6 +500,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
 // CREAR GRÁFICA DE BARRAS // NO FUNCIONA //
 /*google.charts.load("current", {packages:["bar", "corechart"]});
 google.charts.setOnLoadCallback(drawChart);*/
@@ -453,6 +528,24 @@ function drawChart () {
 
 
 
+
+
+/* FUNCIONAMIENTO PARA EL MODAL
+const atletaSeleccionado = cardAtleta.value;
+console.log(atletaSeleccionado);
+const datosAtletas = document.createElement("p");
+datosAtletas.textContent = `${atletaSeleccionado.name}`;
+datosAtletas.classList.add("modal");
+modal.appendChild(datosAtletas);
+atletas.addEventListener('click', () => {
+  modal.showModal()
+})
+const btnCerrarDatos = document.getElementById('btnCerrarDatos');
+//CERRAR MODAL (POR DEFECTO YA ESCUCHA ALFUNAS TECLAS COMO "ESC")
+btnCerrarDatos.addEventListener('click', () =>{
+  const modal = document.querySelector('#modal');
+  modal.close();
+}); */
 
 
 // INTENTOS DE CARGAR CONTEO DE MEDALLAS

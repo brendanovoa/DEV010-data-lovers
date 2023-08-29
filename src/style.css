@@ -60,20 +60,16 @@ main{
     padding: 2rem; /* top | left and right | bottom *//* Añadir un espaciado adicional en los lados para centrar */
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, auto));
     grid-gap: 0.5rem; /* Espacio entre las columnas y filas */
     
-    justify-items: center; 
+    justify-items: left; 
     align-items: center;
 
     font-family: 'Itim', sans-serif;
     font-size: x-large;
     font-weight: 700;
     color: white;
-}
-
-.tituloEquidad {
-    align-items: left;
 }
 
 .paginacionAtletas{
@@ -143,12 +139,17 @@ main{
     font-size: medium;
     font-weight: 400;
     color: #044A88;
+    justify-self: right;
 }
 
 #menuPaises:hover{
     background-color: #044A88;
     color: white;
     border-color: white;
+}
+
+.textoEquidad{
+    justify-self: right;
 }
 
 .seccionAtletas{
@@ -181,6 +182,54 @@ main{
     font-size: medium;
     font-weight: 400;
     color: #044A88;
+}
+
+.cardAtleta:hover{
+    cursor: pointer;
+    background-color: #FCBE0E;
+}
+
+dialog{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-content: center;
+    background-color: white;
+    height: 30rem;
+    width: 20rem;
+    gap: 20px;
+    color: #044A88;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: x-large;
+    font-weight: 400;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: -1rem 1rem 1rem 1rem #044A88; /* offset-x | offset-y | blur-radius | spread-radius | color */
+}
+
+.modal button{
+    height: 3rem;
+    width: 3rem;
+    font-weight: 700;
+    font-size: x-large;
+    color: white;
+    background-color: #044A88;
+    margin-bottom: 1rem;
+    margin-left: 17rem;
+    cursor: pointer;
+}
+
+.modal button:hover{
+    background-color: #F2511C;
+    color: white;
 }
 
 .seccionPaises{
@@ -361,6 +410,20 @@ footer{
 @media (max-width: 425px) {
     .footer{
         font-size: 10px;
+    }
+    .modal{
+        height: 25rem;
+        width: 15rem;
+        gap: 18px;
+        font-size: large;
+        box-shadow: -0.5rem 0.5rem 0.5rem 0.5rem #044A88; /* offset-x | offset-y | blur-radius | spread-radius | color */
+    }
+    
+    .modal button{
+        height: 3rem;
+        width: 3rem;
+        margin-bottom: 0.5rem;
+        margin-left: 12rem;
     }
 }
 

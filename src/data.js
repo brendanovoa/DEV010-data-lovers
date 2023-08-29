@@ -68,7 +68,7 @@ export function conteoMujeres (athletes) {
     }
     if (genero === "F") {
       mujeresPorPais[pais].F++;
-    } else if (genero === "M") {
+    } else {
       mujeresPorPais[pais].M++;
     }
   });
