@@ -57,6 +57,33 @@ export function conteoMedallas (athletes) {
   return medallasPorPais;
 }
 
+// FUNCION PARA CONTAR MUJERES POR PAIS
+export function conteoMujeres (athletes) {
+  const mujeresPorPais = {};
+  athletes.forEach(athlete => {
+    const pais = athlete.team;
+    const genero = athlete.gender;
+    if (!mujeresPorPais[pais]) {
+      mujeresPorPais[pais] = { F: 0, M: 0 };
+    }
+    if (genero === "F") {
+      mujeresPorPais[pais].F++;
+    } else if (genero === "M") {
+      mujeresPorPais[pais].M++;
+    }
+  });
+  return mujeresPorPais;
+}
+
+// FUNCION PARA ORDENAR PAISES POR NÚMERO DE MUJERES
+export function ordenarPaisesMujeres (mujeresPorPais) {
+  const paisesOrdenadosPorMujeres = Object.keys(mujeresPorPais).sort((paisA, paisB) => {
+    const mujeresA = mujeresPorPais[paisA].F;
+    const mujeresB = mujeresPorPais[paisB].F;
+    return mujeresB - mujeresA;
+  });
+  return paisesOrdenadosPorMujeres;
+}
 
 // FUNCION CONTEO MEDALLAS //  BRENDA
 /*

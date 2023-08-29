@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-console */
 // AQUÍ VA TODO LO RELACIONADO CON EL DOM //
 
 import athletes from './data/athletes/athletes.js';
 
-import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar, conteoMedallas, /*filtroPais*/ } from './data.js'; 
+import{ eliminarRepetidos, obtenerPaisesUnicosFiltrados, ordenar, conteoMedallas, conteoMujeres, ordenarPaisesMujeres, /*filtroPais*/ } from './data.js'; 
 
 
 // ELEMENTOS PARA RELACIÓN CON EL DOM
@@ -12,7 +13,7 @@ const contadorPagina = document.querySelector("#contadorPagina");
 const botonSiquiente = document.getElementById("siguiente");
 const btnPagPrimera = document.getElementById("btnPagPrimera");
 const btnPagUltima = document.getElementById("btnPagUltima");
-const paginacion = document.querySelector('.paginacion');
+const paginacionAtletas = document.querySelector('.paginacionAtletas');
 
 const botonAtrasPaises = document.getElementById("atrasPaises");
 const botonSiquientePaises = document.getElementById("siguientePaises");
@@ -23,18 +24,22 @@ const contadorPaginaPaises = document.querySelector("#contadorPaginaPaises");
 
 const tituloPaises = document.querySelector('.tituloPaises');
 const tituloAtletas = document.querySelector('.tituloAtletas');
+const tituloEquidad = document.querySelector('.tituloEquidad');
 const linkPaises = document.querySelector('.Paises');
 const linkAtletas = document.querySelector('.Atletas');
+const linkEquidad = document.querySelector('.Equidad');
 const containerPaises = document.querySelector('.seccionPaises');
-const container = document.querySelector('.seccionAtletas');
+const containerAtletas = document.querySelector('.seccionAtletas');
+const containerEquidad = document.querySelector('.seccionEquidad');
+
 const menuPaises = document.getElementById('menuPaises');
 //const menuDesplegable = document.querySelector('.menuDesplegable');
 const todosPaises = document.querySelector('.optTodos');
+const contenidoMenuPaises = menuPaises.innerHTML;
+//const contenidoMenuDesplegable = menuDesplegable.innerHTML;
 
 const contenidoTituloAtletas = tituloAtletas.innerHTML;
 const contenidoTituloPaises = tituloPaises.innerHTML;
-const contenidoMenuPaises = menuPaises.innerHTML;
-//const contenidoMenuDesplegable = menuDesplegable.innerHTML;
 
 
 // VARIABLES DE ATLETAS UNICOS Y  ORDENADOS
@@ -79,19 +84,19 @@ menuPaises.addEventListener('change', function() {
   const paisSeleccionado = menuPaises.value;
   if (paisSeleccionado) {
     const nombresUnicosFiltrados = obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes.athletes);
-    renderizarPaises(nombresUnicosFiltrados, container);  
+    renderizarPaises(nombresUnicosFiltrados, containerAtletas);  
   } else if (todosPaises) {
     renderizar ();
     primeraPagina(); // Para que regrese a la primera página
     paginaActual = 1;
     // Agrega todos los elementos de paginación nuevamente
-    paginacion.appendChild(btnPagPrimera);
-    paginacion.appendChild(botonAtras);
-    paginacion.appendChild(contadorPagina);
-    paginacion.appendChild(botonSiquiente);
-    paginacion.appendChild(btnPagUltima);
+    paginacionAtletas.appendChild(btnPagPrimera);
+    paginacionAtletas.appendChild(botonAtras);
+    paginacionAtletas.appendChild(contadorPagina);
+    paginacionAtletas.appendChild(botonSiquiente);
+    paginacionAtletas.appendChild(btnPagUltima);
   } else {
-    container.innerHTML = '';
+    containerAtletas.innerHTML = '';
     alert("Seleccione un país para filtrar");
   }
 });
@@ -101,22 +106,30 @@ function renderizar(){
   const cargaDatos = obtenerDatos(paginaActual);
   contadorPagina.textContent = `${paginaActual} / ${paginasTotales}`;
 
-  container.innerHTML = ''; // Limpiar el contenido previo
-  containerPaises.innerHTML = ''; // Eliminar sección paises
-  paginacionPaises.innerHTML = ''; // Eliminar paginación paises
-  paginacion.innerHTML = ''; // Devolver paginación a cero
-  tituloPaises.innerHTML = ''; // Eliminar título paises
   tituloAtletas.innerHTML = contenidoTituloAtletas; // Cargar título atletas
-  menuPaises.innerHTML = contenidoMenuPaises; // Cargar menú desplegable
+  containerAtletas.innerHTML = ''; // Limpiar el contenido previo
+  paginacionAtletas.innerHTML = ''; // Devolver paginación a cero
+
+  tituloAtletas.style.display = "flex";
+  containerAtletas.style.display = "grid";
+  paginacionAtletas.style.display = "flex";
   menuPaises.style.display = "inline-block";
+  menuPaises.innerHTML = contenidoMenuPaises; // Cargar menú desplegable
+
+  tituloPaises.style.display = "none";
+  containerPaises.style.display = "none";
+  paginacionPaises.style.display = "none";
+  tituloEquidad.style.display = "none";
+  containerEquidad.style.display = "none";
+
   //menuDesplegable.innerHTML = contenidoMenuDesplegable;
   cargarOpcionesMenu(paisesUnicos, menuPaises);
   
-  paginacion.appendChild(btnPagPrimera);
-  paginacion.appendChild(botonAtras);
-  paginacion.appendChild(contadorPagina);
-  paginacion.appendChild(botonSiquiente);
-  paginacion.appendChild(btnPagUltima);
+  paginacionAtletas.appendChild(btnPagPrimera);
+  paginacionAtletas.appendChild(botonAtras);
+  paginacionAtletas.appendChild(contadorPagina);
+  paginacionAtletas.appendChild(botonSiquiente);
+  paginacionAtletas.appendChild(btnPagUltima);
 
   cargaDatos.forEach(function (datosSeccion){
     const atletas = document.createElement("div");
@@ -126,7 +139,7 @@ function renderizar(){
     const card = document.createElement("p");
     card.textContent = datosSeccion.name;
     atletas.appendChild(card);
-    container.appendChild(atletas);
+    containerAtletas.appendChild(atletas);
   });
   gestionBotones(); // Llamar a gestionBotones para actualizar los botones
 }
@@ -182,7 +195,7 @@ renderizar();
 // RENDERIZAR LOS ATLETAS SEGÚN EL PAÍS SELECCIONADO
 function renderizarPaises (nombresUnicos, container){
   container.innerHTML = '';
-  paginacion.innerHTML = ''; // Elimina los botones de paginación una vez filtrados los atletas por país
+  paginacionAtletas.innerHTML = ''; // Elimina los botones de paginación una vez filtrados los atletas por país
 
   menuPaises.innerHTML = contenidoMenuPaises; // Cargar menú desplegable
   //menuDesplegable.innerHTML = contenidoMenuDesplegable;
@@ -274,13 +287,21 @@ function gestionBotonesPaises(){
 function renderizarCardsPaises(){
 
   containerPaises.innerHTML = ''; // Limpiar el contenido previo
-  container.innerHTML = ''; // Eliminar sección atletas
-  paginacion.innerHTML = ''; // Eliminar paginación atletas
-  tituloAtletas.innerHTML = ''; // Eliminar título atletas
   menuPaises.innerHTML = ''; // Eliminar filtro por paises
-  menuPaises.style.display = "none";
+
+  tituloPaises.style.display = "flex";
   tituloPaises.innerHTML = contenidoTituloPaises; // Mostrar título
   //menuDesplegable.innerHTML = '';
+  containerPaises.style.display = "grid";
+  paginacionPaises.style.display = "flex";
+
+  tituloAtletas.style.display = "none";
+  containerAtletas.style.display = "none";
+  paginacionAtletas.style.display = "none";
+  menuPaises.style.display = "none";
+
+  tituloEquidad.style.display = "none";
+  containerEquidad.style.display = "none";
 
   paginacionPaises.appendChild(btnPagPrimeraPaises);
   paginacionPaises.appendChild(botonAtrasPaises);
@@ -317,7 +338,6 @@ function renderizarCardsPaises(){
 
 // Contar las medallas por equipo
 const medallasPorPais = conteoMedallas(athletes.athletes);
-console.log(medallasPorPais);
 
 // Llama a los botones para avanzar o retroceder
 botonAtrasPaises.addEventListener("click", retrocederPaginaPaises);
@@ -325,9 +345,111 @@ botonSiquientePaises.addEventListener('click', avanzarPaginaPaises);
 btnPagPrimeraPaises.addEventListener('click', primeraPaginaPaises);
 btnPagUltimaPaises.addEventListener('click', ultimaPaginaPaises);
 
+
+
+
+
+
+// FUNCION PARA RENDERIZAR EQUIDAD DE GÉNERO
+function renderizarEquidad(){
+
+  containerEquidad.innerHTML = ''; // Limpiar el contenido previo
+  tituloEquidad.style.display = "flex";
+  containerEquidad.style.display = "grid";
+
+  tituloAtletas.style.display = "none";
+  containerAtletas.style.display = "none";
+  paginacionAtletas.style.display = "none";
+  menuPaises.style.display = "none";
+  tituloPaises.style.display = "none";
+  containerPaises.style.display = "none";
+  paginacionPaises.style.display = "none";
+
+  const paisesOrdenadosPorMujeres = ordenarPaisesMujeres(mujeresPorPais);
+
+  // Cargar los nombres de paises en  cards
+  paisesOrdenadosPorMujeres.forEach(pais => {
+    const cardEquidad = document.createElement("div");
+    cardEquidad.classList.add("cardEquidad");
+    const nombrePais = document.createElement("p");
+    nombrePais.textContent = pais;
+    cardEquidad.appendChild(nombrePais);
+
+    console.log(mujeresPorPais);
+
+    // Obtener las mujeres por país del objeto mujeresPorPais
+    const mujeresPais = mujeresPorPais[pais];
+    if (mujeresPais) {
+      const mujeresInfo = document.createElement("div");
+      mujeresInfo.textContent = `${mujeresPais.F}`;
+      /*mujeresInfo.innerHTML = `
+      <p>MUJERES: ${mujeresPais.F}</p>
+      <p>HOMBRES: ${mujeresPais.M}</p>`;*/
+      mujeresInfo.classList.add("gender");
+      cardEquidad.appendChild(mujeresInfo);
+
+      // Integrar la función colorear para cambiar el color de fondo
+      const contenidoDiv = mujeresInfo.textContent; // Obtiene el contenido del div como texto ("149")
+      const cantidad = parseInt(contenidoDiv, 10);
+      if (cantidad >= 70) {
+        cardEquidad.style.backgroundColor = "#2B993e";
+        cardEquidad.style.color = "white";
+      } else if (cantidad >= 10) {
+        cardEquidad.style.backgroundColor = "#FCBE0E";
+      } else if (cantidad >= 2) {
+        cardEquidad.style.backgroundColor = "#F47320";
+      } else {
+        cardEquidad.style.backgroundColor = "#F2511C";
+      }
+    }
+    containerEquidad.appendChild(cardEquidad);
+  });
+}
+
+// Contar las mujeres por equipo
+const mujeresPorPais = conteoMujeres(athletes.athletes);
+
+
 // Acciones cuando se da click en el menú de la barra de navegación
 linkPaises.addEventListener("click", renderizarCardsPaises);
 linkAtletas.addEventListener("click", renderizar);
+linkEquidad.addEventListener("click", renderizarEquidad);
+
+// FUNCIÓN PARA CERRAR EL MENÚ DESPLEGABLE CON EL TOGGLE
+document.addEventListener("DOMContentLoaded", function () {
+  const menuLinks = document.querySelectorAll(".menu a");
+  const toggle = document.getElementById("toggle");
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      toggle.checked = false; // Cierra el menú al hacer clic en un enlace
+    });
+  });
+});
+
+// CREAR GRÁFICA DE BARRAS // NO FUNCIONA //
+/*google.charts.load("current", {packages:["bar", "corechart"]});
+google.charts.setOnLoadCallback(drawChart);*/
+
+google.load('visualization','1.0',{'packages':['corechart']});
+google.setOnLoadCallback(drawChart);
+function drawChart () {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string','País');
+  data.addColumn('number','# Mujeres');
+  data.addRows(
+    [
+      ['USA',     149],
+      ['Russia',   82],
+      ['China',    75],
+      ['Germany',  63],
+      ['Canada',   59],
+    ]
+  );
+  const options = {
+    title: 'Mujeres participantes por país'};
+  const chart = new google.visualization.BarChart(document.getElementById('grafica'));
+  chart.draw(data, options);
+}
 
 
 
