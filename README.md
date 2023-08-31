@@ -1,51 +1,51 @@
-# Data lovers :trophy: Juegos Olímpicos :trophy: 
-### :swimmer: Índice :swimmer:
-:table_tennis: Descripción del proyecto
-:table_tennis: Investigación previa para desarrollo del proyecto
-:table_tennis: Características de la aplicación y demostración para desktop y movil
-:table_tennis: Tecnologías utilizadas
-:table_tennis: Estado del proyecto
-:table_tennis: Autoras
+# Data lovers 🏆 Juegos Olímpicos 🏆
+### 🏊 Índice 🏊
+- 🥊 Descripción del proyecto
+- 🥊 Investigación previa para desarrollo del proyecto
+- 🥊 Características de la aplicación y demostración para desktop y movil
+- 🥊 Tecnologías utilizadas
+- 🥊 Estado del proyecto
+- 🥊 Autoras
 
 ------------
 
-#### :weight_lifting: **Descripción del proyecto** :weight_lifting:
+#### :weight_lifting: Descripción del proyecto :weight_lifting:
 Proyecto desarrollado para obtener y visualizar datos acerca de los atletas que participaron durante los Juegos Olímpicos, realizados en Río de Janeiro en el año 2016. Data Lovers -Juegos Olímpicos- es un sitio web para visualizar, filtrar, ordenar y calcular datos de los atletas antes mencionados.
 
 El sitio web permite visualizar tres secciones:
-- **Atletas:**Dentro de esta sección se despliegan los nombres de los atletas en orden alfabético para después filtrarlos de acuerdo al país que representaron, esto por medio de un menú desplegable que muestra todos los países participantes.
-- **Países:**Dentro de esta sección se despliega la lista de los países participantes en orden alfabético durante esta edición de juegos olímpicos, mostrando también el cálculo de cuántas medallas de cada tipo (oro, plata y bronce) ganó cada uno.
-- **Equidad de Género:**Dentro de esta sección se despliega el cálculo del número de mujeres que participaron en esta edición de los juegos, así como se puede visualizar el número de países que representaron y el conteo total de medallas de cada tipo que ganaron (oro,plata y bronce).
+- **Atletas:** Dentro de esta sección se despliegan los nombres de los atletas en orden alfabético para después filtrarlos de acuerdo al país que representaron, esto por medio de un menú desplegable que muestra todos los países participantes.
+- **Países:** Dentro de esta sección se despliega la lista de los países participantes en orden alfabético durante esta edición de juegos olímpicos, mostrando también el cálculo de cuántas medallas de cada tipo (oro, plata y bronce) ganó cada uno.
+- **Equidad de Género:** Dentro de esta sección se despliega el cálculo del número de mujeres que participaron en esta edición de los juegos, así como se puede visualizar el número de países que representaron y el conteo total de medallas de cada tipo que ganaron (oro,plata y bronce).
 
 ------------
 
-#### :weight_lifting: **Investigación previa para desarrollo del proyecto ** :weight_lifting:
+#### :weight_lifting: Investigación previa para desarrollo del proyecto  :weight_lifting:
 Los Juegos Olímpicos de Río de Janeiro, fueron un evento multideportivo internacional, celebrado en la ciudad de Río de Janeiro, Brasil, en 2016. La elección de Río marcó la primera vez que los J.O. se realizan en un país sudamericano. Este evento tuvo gran acogida a nivel mundial, de todas estas personas hay un grupo que desea poder interactuar y ver la información de los atletas, los deportes olímpicos y los países que participaron.
 
-:medal: ** Hallazgos** :medal:
+🏅 **Hallazgos** 🏅
 - En los juegos olímpicos son muchos los países participantes, para nuestros usuarios es importante saber cuáles son y cuáles fueron sus resultados.
 - Para nuestros usuarios es importante tener información relevante sobre los atletas olímpicos, como su nombre, edad, altura, peso, país que representa y especialidad deportiva.
 - Adicionalmente a nuestros usuarios les gustaría saber la cantidad de mujeres atletas que participaron y ganaron medallas.
 
-:medal: **Historias de Usuario** :medal:
+🏅 **Historias de Usuario** 🏅
 
 Las historias de usuario planteadas fueron las siguientes:
-- **Mostrar atletas participantes:**Yo como usuaria quiero ver a todos los participantes de los J.O. para poder conocerlos.
-- **Organización y paginación:**Yo como usuaria quiero ver la información en orden alfabético y poder recorrer los atletas o países participantes en bloques para encontrar lo que busco más fácilmente.
-- **Filtrar atletas por país:**Yo como usuaria quiero poder filtrar a los atletas que participaron por cada país para saber cuáles y cuántos son de cada uno.
-- **Mostrar países participantes:**Yo como usuaria quiero saber qué países participaron para poder conocer sus datos (nombre y resultados).
-- **Mostrar datos específicos de atletas:**Yo como usuaria quiero ver la información completa de los atletas (nombre, edad, género, altura, peso, país y especialidad deportiva) para poder conocer a todos los participantes.
-- **Estadísticas de género:**Yo como usuaria quiero ver cuántas atletas mujeres participaron en los juegos olímpicos para evaluar la equidad de género.
+- **Mostrar atletas participantes:** Yo como usuaria quiero ver a todos los participantes de los J.O. para poder conocerlos.
+- **Organización y paginación:** Yo como usuaria quiero ver la información en orden alfabético y poder recorrer los atletas o países participantes en bloques para encontrar lo que busco más fácilmente.
+- **Filtrar atletas por país:** Yo como usuaria quiero poder filtrar a los atletas que participaron por cada país para saber cuáles y cuántos son de cada uno.
+- **Mostrar países participantes:** Yo como usuaria quiero saber qué países participaron para poder conocer sus datos (nombre y resultados).
+- **Mostrar datos específicos de atletas:** Yo como usuaria quiero ver la información completa de los atletas (nombre, edad, género, altura, peso, país y especialidad deportiva) para poder conocer a todos los participantes.
+- **Estadísticas de género:** Yo como usuaria quiero ver cuántas atletas mujeres participaron en los juegos olímpicos para evaluar la equidad de género.
 
 [![Historias de usuario](https://i.imgur.com/N25zQ2b.png "Historias de usuario")](https://i.imgur.com/N25zQ2b.png "Historias de usuario")
 
-:medal: **Prototipos de baja fidelidad**  :medal:
+🏅 **Prototipos de baja fidelidad**  🏅
 
 De acuerdo a lo visto en las HU nos planteamos el siguiente diseño de páginas  para el despliegue de la información:
 
 [![Prototipos de baja fidelidad](https://i.imgur.com/EMuTbN4.png "Prototipos de baja fidelidad")](https://i.imgur.com/EMuTbN4.png "Prototipos de baja fidelidad")
 
-:medal: **Prototipos de Alta fidelidad** :medal:
+🏅 **Prototipos de Alta fidelidad** 🏅
 
 - Página de entrada.
 [![P. entrada](https://i.imgur.com/0ogoudG.png "P. entrada")](https://i.imgur.com/0ogoudG.png "P. entrada")
@@ -62,7 +62,7 @@ De acuerdo a lo visto en las HU nos planteamos el siguiente diseño de páginas 
 - Página de Equidad de Género
 [![P. equidad ](https://i.imgur.com/BDbXSIK.png "P. equidad ")](https://i.imgur.com/BDbXSIK.png "P. equidad ")
 
-:medal: **Pruebas de usabilidad** :medal:
+🏅 **Pruebas de usabilidad** 🏅
 
 Se realizaron pruebas de usabilidad con 3 potenciales usuarias las cuales recomendaron:
 - Las páginas de acceso e inicio se percibían como que frenaban la lectura del sitio y no se sabía qué información se iba a obtener en el. Por lo siguiente se decidió eliminar estas dos páginas y acceder directamente a los atletas participantes.
@@ -70,7 +70,7 @@ Se realizaron pruebas de usabilidad con 3 potenciales usuarias las cuales recome
 - Otros comentarios fueron en relación a los colores utilizados los cuales les parecieron adecuados y llamativos pero que no incomodaban a la lectura.
 - Los botones y su ubicación fueron claros y a la vista.
 
-:medal: **Revisión de datos** :medal:
+🏅 **Revisión de datos** 🏅
 
 Al revisar a profundidad el volúmen de los datos, utilizando JSON HERO, nos replanteamos la estructura y contenido de la interfaz para priorizar un acomodo ordenado y  fácil de navegar para los usuarios, así como, optimizar el despliegue de la información.
 Aunado  a esto, la data contenía algunos errores como números agregados en los nombres de países y nombres de atletas con falta de letras capitales. Por esto, decidimos  corregir los datos para poder trabajarlos correctamente.
@@ -78,7 +78,7 @@ Aunado  a esto, la data contenía algunos errores como números agregados en los
 - Visualización de la información por medio de JsonHero.
 [![Json Hero](https://i.imgur.com/fXHgoZ5.png "Json Hero")](https://i.imgur.com/fXHgoZ5.png "Json Hero")
 
-:medal: **Cambios en prototipos de baja y alta fidelidad** :medal:
+🏅 **Cambios en prototipos de baja y alta fidelidad** 🏅
 
 - Cambios para el prototipo de baja fidelidad sección “Atletas”
 [![Baja fidelidad Atletas](https://i.imgur.com/tmJXKYI.png "Baja fidelidad Atletas")](https://i.imgur.com/tmJXKYI.png "Baja fidelidad Atletas")
@@ -99,7 +99,7 @@ Aunado  a esto, la data contenía algunos errores como números agregados en los
 
 ------------
 
-#### :weight_lifting: **Características de la aplicación y demostración para desktop y movil** :weight_lifting:
+#### :weight_lifting: Características de la aplicación y demostración para desktop y movil :weight_lifting:
 
 - Despliegue de la sección “Atletas” visualización de los nombres de los atletas participantes en orden alfabético y  paginación para mostrarlos:
 [![Pantalla atletas](https://i.imgur.com/xH73YvO.png "Pantalla atletas")](https://i.imgur.com/xH73YvO.png "Pantalla atletas")
@@ -155,7 +155,7 @@ Se realizaron pruebas unitarias para las funciones que realizan filtros, ordenam
 #### :weight_lifting: **Autoras** :weight_lifting:
 
 - Brenda Hernandez Novoa
-[![Bren](https://i.imgur.com/9gP2Nho.png "Bren")](https://i.imgur.com/9gP2Nho.png "Bren")
+- [![Bren](https://i.imgur.com/9gP2Nho.png "Bren")](https://i.imgur.com/9gP2Nho.png "Bren")
 
 - Jazmin Ruiz Orbe
-[![Jazz](https://i.imgur.com/cIscuuV.png "Jazz")](https://i.imgur.com/cIscuuV.png "Jazz")
+- [![Jazz](https://i.imgur.com/cIscuuV.png "Jazz")](https://i.imgur.com/cIscuuV.png "Jazz")
