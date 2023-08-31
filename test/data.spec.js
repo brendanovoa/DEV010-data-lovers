@@ -195,9 +195,18 @@ describe('obtenerPaisesUnicosFiltrados', () => {
       "event": "Wrestling Men's Middleweight, Greco-Roman",
       "medal": "Bronze"
     },]
-    expect(obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes)).toEqual([
-      "Luc Abalo"
-    ]);
+    expect(obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes)).toEqual([{
+      "name": "Luc Abalo",
+      "gender": "M",
+      "height": "182",
+      "weight": "86",
+      "sport": "Handball",
+      "team": "France",
+      "noc": "FRA",
+      "age": 31,
+      "event": "Handball Men's Handball",
+      "medal": "Silver"
+    }]);
   });
 });
 

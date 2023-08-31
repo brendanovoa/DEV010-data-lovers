@@ -32,8 +32,10 @@ export function filtroPais (input, athletes) {
 // FUNCION PARA ELIMINAR PAISES REPETIDOS Y ORDENARLOS
 export function obtenerPaisesUnicosFiltrados (paisSeleccionado, athletes){
   const paisesFiltrados = filtroPais(paisSeleccionado, athletes);
+  // console.log(paisesFiltrados);
   // eslint-disable-next-line no-undef
-  const paisesUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete.name))].sort();
+  const paisesUnicosOrdenados = [...new Set(paisesFiltrados.map(athlete => athlete))].sort();
+  //console.log(paisesUnicosOrdenados);
   return paisesUnicosOrdenados;
 }
 
