@@ -87,6 +87,10 @@ menuPaises.addEventListener('change', function() {
   const paisSeleccionado = menuPaises.value;
   if (paisSeleccionado) {
     const nombresUnicosFiltrados = obtenerPaisesUnicosFiltrados(paisSeleccionado, athletes.athletes);
+
+    //const nombresPorPais = [...new Set(nombresUnicosFiltrados.map(athlete => athlete.name))].sort();
+    //console.log(nombresPorPais);
+
     renderizarPaises(nombresUnicosFiltrados, containerAtletas);  
   } else if (todosPaises) {
     renderizar ();
@@ -205,6 +209,7 @@ function mostrarModal(datosSeccion) {
 
 // Evento de clic en el modal para cerrarlo
 modal.addEventListener('click', () => {
+  dialog.style.display = "none";
   modal.close();
 });
 
@@ -262,35 +267,38 @@ renderizar();
 function renderizarPaises (nombresUnicos, container){
   container.innerHTML = '';
   modal.innerHTML =  '';
+  dialog.style.display = "none";
   modal.close();
   paginacionAtletas.innerHTML = ''; // Elimina los botones de paginación una vez filtrados los atletas por país
 
   menuPaises.innerHTML = contenidoMenuPaises; // Cargar menú desplegable
   //menuDesplegable.innerHTML = contenidoMenuDesplegable;
   cargarOpcionesMenu(paisesUnicos, menuPaises);
-  
-  nombresUnicos.forEach(nombre => {
-    const nombreInfo = document.createElement("div");
-    nombreInfo.classList.add("cardAtleta");
-    nombreInfo.textContent = nombre;
-    container.appendChild(nombreInfo);
-  });
-  // Cargar el modal en la sección por paises // NO FUNCIONA !!!
-  /*nombresUnicos.forEach(function (datosSeccion){
-      // Evento de clic en la card de atleta para mostrar modal
-      nombreInfo.addEventListener('click', () => {
-        mostrarModal(datosSeccion); // Llama a la función para mostrar el modal
-        dialog.style.display = "flex";
-      });*/
-}
 
+  //vover a quitar repetidos y ordenarlos alfabeticamente
+  const atletasPorPais = [...new Set(nombresUnicos.map(athlete => athlete.name))].sort();
+  
+  atletasPorPais.forEach(nombre => {
+    //aquí obtendremos solo el nombre para las cards pero sin perder la información completa
+    const atleta = nombresUnicos.find(athlete => athlete.name === nombre);
+    const atletas = document.createElement("div");
+    atletas.classList.add("cardAtleta");
+    atletas.textContent = nombre;
+    container.appendChild(atletas);
+
+    // Cargar el modal en la sección por paises // NO FUNCIONA !!!
+    atletas.addEventListener('click', () => {
+      mostrarModal(atleta);
+      dialog.style.display = "flex";
+    });
+  });
+}
 
 // Llama a los botones para avanzar o retroceder
 botonAtras.addEventListener("click", retrocederPagina);
 botonSiquiente.addEventListener('click', avanzarPagina);
 btnPagPrimera.addEventListener('click', primeraPagina);
 btnPagUltima.addEventListener('click', ultimaPagina);
-
 
 
 
@@ -488,6 +496,7 @@ const mujeresPorPais = conteoMujeres(athletes.athletes);
 linkPaises.addEventListener("click", renderizarCardsPaises);
 linkAtletas.addEventListener("click", renderizar);
 linkEquidad.addEventListener("click", renderizarEquidad);
+
 
 // FUNCIÓN PARA CERRAR EL MENÚ DESPLEGABLE CON EL TOGGLE
 document.addEventListener("DOMContentLoaded", function () {
