@@ -177,7 +177,7 @@ function mostrarModal(datosSeccion) {
   nombre.textContent = `${datosSeccion.name}`;
   modal.appendChild(nombre);
   nombre.style.backgroundColor = "#FCBE0E";
-  nombre.style.height = "4rem";
+  nombre.style.padding = "1rem";
   nombre.style.fontWeight = "500";
 
   const edad = document.createElement("p");
@@ -302,14 +302,12 @@ btnPagUltima.addEventListener('click', ultimaPagina);
 
 
 
-
-
 // LLENAR EL NUEVO DOM A PARTIR DE PAISES //
 
 // VARIABLES PARA CALCULAR ITEMS POR PAGINA
 const paisesUnicosOrdenados = paisesUnicos.sort();
 const itemsTotalesPaises = paisesUnicosOrdenados.length;
-const itemsPaginaPaises = 20;
+const itemsPaginaPaises = 100; // Ajuste para mostrar todos los paises
 const paginasTotalesPaises = Math.ceil(itemsTotalesPaises / itemsPaginaPaises); // Usamos Math.ceil para redondear hacia arriba
 let paginaActualPaises = 1;
 
@@ -321,7 +319,7 @@ function obtenerDatosPaises (pagina = 1){
   const items = paisesUnicosOrdenados.slice(corteInicio, corteFinal);
   return items;
 }
-
+/*
 // BOTONES PRIMERA Y ULTIMA PÁGINA
 function primeraPaginaPaises() {
   if (paginaActualPaises !== 1){
@@ -329,28 +327,24 @@ function primeraPaginaPaises() {
     renderizarCardsPaises();
   } 
 }
-
 function ultimaPaginaPaises() {
   if (paginaActualPaises !== paginasTotalesPaises){
     paginaActualPaises = paginasTotalesPaises;// Llamar a renderizar con la última página
     renderizarCardsPaises();
   } 
 }
-
 // Función para retroceder de pagina
 function retrocederPaginaPaises() {
   paginaActualPaises = paginaActualPaises - 1;
   renderizarCardsPaises();
 }
-
 // Funcion para avanzar de pagina
 function avanzarPaginaPaises(){
   paginaActualPaises = paginaActualPaises + 1;
   renderizarCardsPaises();
-}
-
+}*/
 // Función que habilita o desactiva los botones de la paginas dependiendo de si nos encontramos en la primera página o en la última.
-function gestionBotonesPaises(){
+/*function gestionBotonesPaises(){
   //Esto comprueba si no se puede retroceder
   if (paginaActualPaises === 1 ) {
     botonAtrasPaises.setAttribute("disabled", true);
@@ -365,7 +359,7 @@ function gestionBotonesPaises(){
   else{
     botonSiquientePaises.removeAttribute("disabled");
   }
-}
+}*/
 
 // FUNCION PARA RENDERIZAR LAS CARDS DE PAISES CON NOMBRE Y MEDALLAS
 function renderizarCardsPaises(){
@@ -378,7 +372,7 @@ function renderizarCardsPaises(){
   tituloPaises.innerHTML = contenidoTituloPaises; // Mostrar título
   //menuDesplegable.innerHTML = '';
   containerPaises.style.display = "grid";
-  paginacionPaises.style.display = "flex";
+  //paginacionPaises.style.display = "flex"; //NO MOSTRAR
 
   tituloAtletas.style.display = "none";
   containerAtletas.style.display = "none";
@@ -406,7 +400,8 @@ function renderizarCardsPaises(){
     nombrePais.textContent = pais;
     cardPais.appendChild(nombrePais);
 
-    // Obtener las medallas por país del objeto medallasPorPais
+    /* ORIGINAL */
+    /* Obtener las medallas por país del objeto medallasPorPais // ORIGINAL
     const medallasPais = medallasPorPais[pais];
     if (medallasPais) {
       const medallasInfo = document.createElement("div");
@@ -415,21 +410,73 @@ function renderizarCardsPaises(){
         PLATA: ${medallasPais.Silver}
         BRONCE: ${medallasPais.Bronze}`;
       medallasInfo.classList.add("medallas");
-      cardPais.appendChild(medallasInfo);
-    }
+      cardPais.appendChild(medallasInfo); }*/
     containerPaises.appendChild(cardPais);
+
+    // Evento de clic en la card de atleta para mostrar modal
+    cardPais.addEventListener('click', () => {
+      mostrarModalMedallas(medallasPorPais[pais], pais); // Llama a la función para mostrar el modal
+      dialog.style.display = "flex";
+    });
   });
-  gestionBotonesPaises(); // Llamar a gestionBotones para actualizar los botones
+  //gestionBotonesPaises(); // Llamar a gestionBotones para actualizar los botones
 }
 
 // Contar las medallas por equipo
 const medallasPorPais = conteoMedallas(athletes.athletes);
 
+
+// MODAL MEDALLAS POR PAIS
+function mostrarModalMedallas(medallasPorPais, nombrePais) {
+
+  modal.innerHTML =  '';
+  const cerrar = document.createElement("button");
+  cerrar.textContent = `x`;
+  modal.appendChild(cerrar);
+  cerrar.addEventListener('click', () => {
+    dialog.style.display = "none";
+    modal.close();
+  });
+
+  const medallasPais = medallasPorPais;
+  if (medallasPais) {
+    const pais = document.createElement("p");
+    pais.textContent = `${nombrePais}`;
+    modal.appendChild(pais);
+    pais.style.backgroundColor = "#FCBE0E";
+    pais.style.fontWeight = "500";
+    pais.style.padding = "1rem";
+
+    const oro = document.createElement("p");
+    oro.textContent = `ORO: ${medallasPais.Gold}`;
+    modal.appendChild(oro);
+    oro.style.paddingTop = "2rem";
+
+    const plata = document.createElement("p");
+    plata.textContent = `PLATA: ${medallasPais.Silver}`;
+    modal.appendChild(plata);
+    plata.style.paddingTop = "2rem";
+
+    const bronce = document.createElement("p");
+    bronce.textContent = `BRONCE: ${medallasPais.Bronze}`;
+    modal.appendChild(bronce);
+    bronce.style.paddingTop = "2rem";
+  }
+  modal.showModal();
+}
+
+// Evento de clic en el modal para cerrarlo
+modal.addEventListener('click', () => {
+  dialog.style.display = "none";
+  modal.close();
+});
+
+
 // Llama a los botones para avanzar o retroceder
-botonAtrasPaises.addEventListener("click", retrocederPaginaPaises);
+/*botonAtrasPaises.addEventListener("click", retrocederPaginaPaises);
 botonSiquientePaises.addEventListener('click', avanzarPaginaPaises);
 btnPagPrimeraPaises.addEventListener('click', primeraPaginaPaises);
-btnPagUltimaPaises.addEventListener('click', ultimaPaginaPaises);
+btnPagUltimaPaises.addEventListener('click', ultimaPaginaPaises);*/
 
 
 

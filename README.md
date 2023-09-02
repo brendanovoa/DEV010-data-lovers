@@ -10,12 +10,13 @@
 ------------
 
 #### :weight_lifting: Descripción del proyecto :weight_lifting:
-Proyecto desarrollado para obtener y visualizar datos acerca de los atletas que participaron durante los Juegos Olímpicos, realizados en Río de Janeiro en el año 2016. Data Lovers -Juegos Olímpicos- es un sitio web para visualizar, filtrar, ordenar y calcular datos de los atletas antes mencionados.
+Proyecto desarrollado para obtener y visualizar datos acerca de los atletas que participaron durante los Juegos Olímpicos realizados en Río de Janeiro en el año 2016. Data Lovers -Juegos Olímpicos- es un sitio web para visualizar, filtrar, ordenar y calcular datos de los atletas antes mencionados.
 
 El sitio web permite visualizar tres secciones:
+
 - **Atletas:** Dentro de esta sección se despliegan los nombres de los atletas en orden alfabético para después filtrarlos de acuerdo al país que representaron, esto por medio de un menú desplegable que muestra todos los países participantes.
 - **Países:** Dentro de esta sección se despliega la lista de los países participantes en orden alfabético durante esta edición de juegos olímpicos, mostrando también el cálculo de cuántas medallas de cada tipo (oro, plata y bronce) ganó cada uno.
-- **Equidad de Género:** Dentro de esta sección se despliega el cálculo del número de mujeres que participaron en esta edición de los juegos, así como se puede visualizar el número de países que representaron y el conteo total de medallas de cada tipo que ganaron (oro,plata y bronce).
+- **Equidad de Género:** Dentro de esta sección se despliega el cálculo del número de mujeres que participaron en esta edición de los juegos representando a cada país, también se puede visualizar mediante colores los países que más mujeres incorporaron y los que menos.
 
 ------------
 
@@ -25,7 +26,7 @@ Los Juegos Olímpicos de Río de Janeiro, fueron un evento multideportivo intern
 🏅 **Hallazgos** 🏅
 - En los juegos olímpicos son muchos los países participantes, para nuestros usuarios es importante saber cuáles son y cuáles fueron sus resultados.
 - Para nuestros usuarios es importante tener información relevante sobre los atletas olímpicos, como su nombre, edad, altura, peso, país que representa y especialidad deportiva.
-- Adicionalmente a nuestros usuarios les gustaría saber la cantidad de mujeres atletas que participaron y ganaron medallas.
+- Adicionalmente a nuestros usuarios les gustaría saber la cantidad de mujeres atletas que participaron por país.
 
 🏅 **Historias de Usuario** 🏅
 
@@ -72,8 +73,8 @@ Se realizaron pruebas de usabilidad con 3 potenciales usuarias las cuales recome
 
 🏅 **Revisión de datos** 🏅
 
-Al revisar a profundidad el volúmen de los datos, utilizando JSON HERO, nos replanteamos la estructura y contenido de la interfaz para priorizar un acomodo ordenado y  fácil de navegar para los usuarios, así como, optimizar el despliegue de la información.
-Aunado  a esto, la data contenía algunos errores como números agregados en los nombres de países y nombres de atletas con falta de letras capitales. Por esto, decidimos  corregir los datos para poder trabajarlos correctamente.
+Al revisar a profundidad el volúmen de los datos, utilizando JSON HERO, nos replanteamos la estructura y contenido de la interfaz para priorizar un acomodo ordenado y fácil de navegar para los usuarios, así como, optimizar el despliegue de la información.
+Aunado a esto, la data contenía algunos errores como números agregados en los nombres de países y nombres de atletas con falta de letras capitales. Por esto, decidimos corregir los datos para poder trabajarlos correctamente.
 
 - Visualización de la información por medio de JsonHero.
 [![Json Hero](https://i.imgur.com/fXHgoZ5.png "Json Hero")](https://i.imgur.com/fXHgoZ5.png "Json Hero")
@@ -132,7 +133,7 @@ Aunado  a esto, la data contenía algunos errores como números agregados en los
 
 #### :weight_lifting: **Tecnologías utilizadas** :weight_lifting:
 
-- Adobe Ilustrator
+- Adobe Illustrator
 - Figma
 - Trello
 - HTML 5
@@ -144,7 +145,6 @@ Aunado  a esto, la data contenía algunos errores como números agregados en los
 #### :weight_lifting: **Estado del proyecto** :weight_lifting:
 
 Proyecto en repositorio remoto en Github y despegado en Github pages.
-Sección de datos específicos por atleta en proceso.
 
 Se realizaron pruebas unitarias para las funciones que realizan filtros, ordenamiento y conteo de datos con una cobertura del 100%.
 
